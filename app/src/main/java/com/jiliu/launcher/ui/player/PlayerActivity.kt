@@ -93,7 +93,7 @@ class PlayerActivity : AppCompatActivity() {
         scope.launch {
             try {
                 val audioList = MediaStoreUtils.getAllAudio(this@PlayerActivity)
-                val videoList = MediaStoreUtils.getAllVideo(this@PlayerActivity)
+                val videoList = MediaStoreUtils.getAllVideos(this@PlayerActivity)
                 
                 currentPlaylist.clear()
                 currentPlaylist.addAll(audioList)

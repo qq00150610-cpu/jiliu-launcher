@@ -98,6 +98,10 @@ dependencies {
     
     // Image Loading
     implementation("io.coil-kt:coil:2.5.0")
+    implementation("io.coil-kt:coil-svg:2.5.0")
+    
+    // ExifInterface
+    implementation("androidx.exifinterface:exifinterface:1.3.7")
     
     // ExoPlayer for Media
     implementation("androidx.media3:media3-exoplayer:1.2.1")

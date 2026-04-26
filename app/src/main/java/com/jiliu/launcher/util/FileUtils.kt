@@ -22,10 +22,31 @@ object FileUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             val storageManager = context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
             try {
-                val storageVolumes = StorageManager.getStorageVolumes(context)
+                val storageVolumes = StorageManager.storageVolumes
                 for (volume in storageVolumes) {
-                    if (volume.isUsb) {
-                        val path = volume.directory?.absolutePath
+                    // Use reflection to check if it's USB since isUsb is hidden API
+                    val isUsb = try {
+                        val method = volume.javaClass.getMethod("isUsb")
+                        method.invoke(volume) as? Boolean ?: false
+                    } catch (e: Exception) {
+                        // Fallback: check by description or type
+                        val description = try {
+                            volume.javaClass.getMethod("getDescription", Context::class.java)
+                                .invoke(volume, context) as? String ?: ""
+                        } catch (ex: Exception) {
+                            ""
+                        }
+                        description.contains("USB", ignoreCase = true) || 
+                        description.contains("U 盘", ignoreCase = true)
+                    }
+                    
+                    if (isUsb) {
+                        val path = try {
+                            val getPathMethod = volume.javaClass.getMethod("getDirectory")
+                            (getPathMethod.invoke(volume) as? File)?.absolutePath
+                        } catch (e: Exception) {
+                            null
+                        }
                         if (!path.isNullOrEmpty() && File(path).exists()) {
                             usbPaths.add(path)
                         }

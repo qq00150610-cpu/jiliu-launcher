@@ -1,5 +1,6 @@
 package com.jiliu.launcher.ui.member
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -118,8 +119,4 @@ class MemberActivity : AppCompatActivity() {
         
         updateUI()
     }
-}
-
-private class Intent(val clazz: Class<com.jiliu.launcher.ui.settings.SettingsActivity>) {
-    constructor() : this(com.jiliu.launcher.ui.settings.SettingsActivity::class.java)
 }

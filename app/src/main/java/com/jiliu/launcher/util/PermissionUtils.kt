@@ -1,12 +1,14 @@
 package com.jiliu.launcher.util
 
 import android.accessibilityservice.AccessibilityServiceInfo
+import android.app.Activity
 import android.app.WallpaperManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.os.Environment
 import android.os.PowerManager
 import android.provider.Settings
 import android.view.accessibility.AccessibilityManager
@@ -102,9 +104,9 @@ object PermissionUtils {
     /**
      * Request notification permission
      */
-    fun requestNotificationPermission(context: Context) {
+    fun requestNotificationPermission(activity: Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            context.requestPermissions(
+            activity.requestPermissions(
                 arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
                 REQUEST_NOTIFICATION_PERMISSION
             )

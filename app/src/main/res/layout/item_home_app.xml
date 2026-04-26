@@ -6,7 +6,7 @@
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/dock_icon"
+        android:id="@+id/app_icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center"

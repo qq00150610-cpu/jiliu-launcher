@@ -272,11 +272,3 @@ class FileManagerViewModel(application: Application) : AndroidViewModel(applicat
         data class Move(val successCount: Int, val failCount: Int) : OperationResult()
     }
 }
-
-private class File(path: String) {
-    val parent: String?
-        get() {
-            val lastSeparator = path.lastIndexOf('/')
-            return if (lastSeparator > 0) path.substring(0, lastSeparator) else null
-        }
-}

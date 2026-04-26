@@ -100,12 +100,19 @@ object IntentUtils {
     }
 
     /**
+     * Open app settings
+     */
+    fun openAppSettings(context: Context) {
+        openAppDetails(context, context.packageName)
+    }
+
+    /**
      * Open file with specific app
      */
     fun openFile(context: Context, filePath: String, mimeType: String? = null) {
         try {
             val file = File(filePath)
-            val uri = FileProvider.getUriForFile(context, file)
+            val uri = FileProviderUtil.getUriForFile(context, file)
             
             val intent = Intent(Intent.ACTION_VIEW).apply {
                 setDataAndType(uri, mimeType ?: getMimeType(filePath))
@@ -148,7 +155,7 @@ object IntentUtils {
     fun shareFile(context: Context, filePath: String, mimeType: String? = null) {
         try {
             val file = File(filePath)
-            val uri = FileProvider.getUriForFile(context, file)
+            val uri = FileProviderUtil.getUriForFile(context, file)
             
             val intent = Intent(Intent.ACTION_SEND).apply {
                 type = mimeType ?: getMimeType(filePath)
@@ -184,7 +191,7 @@ object IntentUtils {
     fun installApk(context: Context, apkPath: String) {
         try {
             val file = File(apkPath)
-            val uri = FileProvider.getUriForFile(context, file)
+            val uri = FileProviderUtil.getUriForFile(context, file)
             
             val intent = Intent(Intent.ACTION_VIEW).apply {
                 setDataAndType(uri, "application/vnd.android.package-archive")
