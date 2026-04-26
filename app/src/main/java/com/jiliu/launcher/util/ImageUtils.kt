@@ -52,16 +52,21 @@ object ImageUtils {
         maxHeight: Int = 1080
     ): Bitmap? = withContext(Dispatchers.IO) {
         try {
+            // First, get image dimensions
+            val boundsOptions = BitmapFactory.Options().apply {
+                inJustDecodeBounds = true
+            }
             context.contentResolver.openInputStream(uri)?.use { inputStream ->
-                val options = BitmapFactory.Options().apply {
-                    inJustDecodeBounds = true
-                }
-                BitmapFactory.decodeStream(inputStream, null, options)
+                BitmapFactory.decodeStream(inputStream, null, boundsOptions)
             }
 
+            // Calculate sample size
+            val sampleSize = calculateInSampleSize(boundsOptions, maxWidth, maxHeight)
+
+            // Then, decode with sample size
             context.contentResolver.openInputStream(uri)?.use { inputStream ->
                 val options = BitmapFactory.Options().apply {
-                    inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight)
+                    inSampleSize = sampleSize
                     inJustDecodeBounds = false
                 }
                 BitmapFactory.decodeStream(inputStream, null, options)

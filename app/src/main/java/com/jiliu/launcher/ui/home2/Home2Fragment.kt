@@ -98,7 +98,7 @@ class Home2Fragment : Fragment() {
         }
 
         // Music mini player
-        binding.musicMiniPlayer.setOnClickListener {
+        binding.musicMiniPlayer.root.setOnClickListener {
             startActivity(Intent(requireContext(), PlayerActivity::class.java))
         }
     }

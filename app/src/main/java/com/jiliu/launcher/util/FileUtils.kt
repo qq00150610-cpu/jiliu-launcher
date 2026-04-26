@@ -22,7 +22,10 @@ object FileUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             val storageManager = context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
             try {
-                val storageVolumes = StorageManager.storageVolumes
+                // Use reflection to access hidden API
+                val getVolumeListMethod = StorageManager::class.java.getMethod("getStorageVolumes")
+                @Suppress("UNCHECKED_CAST")
+                val storageVolumes = getVolumeListMethod.invoke(storageManager) as List<android.os.storage.StorageVolume>
                 for (volume in storageVolumes) {
                     // Use reflection to check if it's USB since isUsb is hidden API
                     val isUsb = try {
