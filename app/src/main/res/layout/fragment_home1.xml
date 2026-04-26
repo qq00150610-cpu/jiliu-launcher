@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- App grid -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/app_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_home_app" />
+
+    <!-- Quick action buttons -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_settings"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_circle_button"
+            android:src="@drawable/ic_settings"
+            android:contentDescription="设置" />
+
+        <ImageButton
+            android:id="@+id/btn_refresh"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_circle_button"
+            android:src="@drawable/ic_refresh"
+            android:contentDescription="刷新" />
+
+        <ImageButton
+            android:id="@+id/btn_toggle_mode"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_circle_button"
+            android:src="@drawable/ic_switch"
+            android:contentDescription="切换模式" />
+
+    </LinearLayout>
+
+    <!-- Bottom toolbar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/btn_file_manager"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_toolbar_button"
+            android:src="@drawable/ic_folder"
+            android:contentDescription="文件管理" />
+
+        <ImageButton
+            android:id="@+id/btn_wallpaper"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/bg_toolbar_button"
+            android:src="@drawable/ic_wallpaper"
+            android:contentDescription="壁纸" />
+
+        <ImageButton
+            android:id="@+id/btn_member"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/bg_toolbar_button"
+            android:src="@drawable/ic_vip"
+            android:contentDescription="会员" />
+
+    </LinearLayout>
+
+</FrameLayout>

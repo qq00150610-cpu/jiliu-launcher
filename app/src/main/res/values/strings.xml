@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">极流桌面</string>
+    
+    <!-- Common -->
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="delete">删除</string>
+    <string name="close">关闭</string>
+    <string name="save">保存</string>
+    <string name="edit">编辑</string>
+    <string name="share">分享</string>
+    <string name="copy">复制</string>
+    <string name="move">移动</string>
+    <string name="rename">重命名</string>
+    
+    <!-- Home -->
+    <string name="home_mode_simple">简洁模式</string>
+    <string name="home_mode_rich">丰富模式</string>
+    
+    <!-- Settings -->
+    <string name="settings">设置</string>
+    <string name="home_mode">主页模式</string>
+    <string name="dock_settings">Dock栏设置</string>
+    <string name="floating_dock">悬浮Dock</string>
+    <string name="music_capsule">音乐胶囊</string>
+    <string name="edge_gesture">边缘手势</string>
+    <string name="grid_layout">网格布局</string>
+    <string name="wallpaper">壁纸设置</string>
+    <string name="auto_wallpaper">自动更换壁纸</string>
+    <string name="file_manager">文件管理</string>
+    <string name="app_manager">应用管理</string>
+    <string name="member_center">会员中心</string>
+    <string name="cleanup">清理加速</string>
+    <string name="recent_tasks">最近任务</string>
+    <string name="system_settings">系统设置</string>
+    <string name="permissions">权限管理</string>
+    <string name="about">关于</string>
+    
+    <!-- Member -->
+    <string name="vip_member">VIP会员</string>
+    <string name="normal_user">普通用户</string>
+    <string name="activation_code">激活码</string>
+    <string name="enter_activation_code">请输入激活码</string>
+    <string name="activate">激活</string>
+    <string name="activation_success">激活成功</string>
+    <string name="activation_failed">激活失败</string>
+    <string name="vip_features">VIP特权</string>
+    <string name="expire_date">到期时间</string>
+    <string name="remaining_days">剩余天数</string>
+    
+    <!-- Wallpaper -->
+    <string name="wallpaper_categories">壁纸分类</string>
+    <string name="featured">精选</string>
+    <string name="set_wallpaper">设置壁纸</string>
+    <string name="set_home_screen">主屏幕</string>
+    <string name="set_lock_screen">锁屏</string>
+    <string name="local_wallpaper">本地壁纸</string>
+    
+    <!-- File Manager -->
+    <string name="internal_storage">内部存储</string>
+    <string name="sd_card">SD卡</string>
+    <string name="usb_storage">USB存储</string>
+    <string name="new_folder">新建文件夹</string>
+    <string name="folder_name">文件夹名称</string>
+    <string name="create">创建</string>
+    <string name="confirm_delete">确认删除</string>
+    <string name="delete_warning">确定要删除选中的项目吗?</string>
+    <string name="empty_folder">文件夹为空</string>
+    <string name="selected_count">已选择 %d 个项目</string>
+    
+    <!-- App Manager -->
+    <string name="all_apps">全部</string>
+    <string name="user_apps">用户</string>
+    <string name="system_apps">系统</string>
+    <string name="no_apps">没有应用</string>
+    <string name="app_info">应用信息</string>
+    <string name="uninstall">卸载</string>
+    <string name="confirm_uninstall">确认卸载</string>
+    
+    <!-- Player -->
+    <string name="not_playing">未播放</string>
+    <string name="unknown_artist">未知艺术家</string>
+    <string name="local_files">本地文件</string>
+    
+    <!-- Permissions -->
+    <string name="overlay_permission">悬浮窗权限</string>
+    <string name="storage_permission">存储权限</string>
+    <string name="settings_permission">系统设置权限</string>
+    <string name="grant_permission">授予权限</string>
+    
+    <!-- Cleanup -->
+    <string name="memory_status">内存状态</string>
+    <string name="total_memory">总内存</string>
+    <string name="used_memory">已用</string>
+    <string name="available_memory">可用</string>
+    <string name="one_key_cleanup">一键清理</string>
+    <string name="clear_memory">清理内存</string>
+    <string name="clear_cache">清理缓存</string>
+    <string name="clear_complete">清理完成</string>
+    
+    <!-- Misc -->
+    <string name="loading">加载中...</string>
+    <string name="error_occurred">发生错误</string>
+    <string name="success">成功</string>
+    <string name="failed">失败</string>
+</resources>
