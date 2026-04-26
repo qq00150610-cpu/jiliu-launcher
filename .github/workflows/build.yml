@@ -22,38 +22,25 @@ jobs:
         distribution: 'temurin'
         
     - name: Setup Android SDK
-      uses: android-actions/setup-android@v2
+      uses: android-actions/setup-android@v3
       
-    - name: Cache Gradle packages
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
-          
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
-    - name: Build with Gradle
-      run: ./gradlew assembleDebug --no-daemon
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug --no-daemon --stacktrace
       
-    - name: Upload APK
-      uses: actions/upload-artifact@v3
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v4
       with:
-        name: APK
+        name: app-debug
         path: app/build/outputs/apk/debug/*.apk
-        
-    - name: Create Nightly Download
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      run: |
-        echo "https://nightly.link/qq00150610-cpu/jiliu-launcher/actions/workflows/build.yml/artifacts/${{ github.run_id }}" >> nightly_link.txt
-        
-    - name: Upload Nightly Link
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      uses: actions/upload-artifact@v3
+
+    - name: Build Release APK
+      run: ./gradlew assembleRelease --no-daemon --stacktrace
+      
+    - name: Upload Release APK
+      uses: actions/upload-artifact@v4
       with:
-        name: nightly-link
-        path: nightly_link.txt
+        name: app-release
+        path: app/build/outputs/apk/release/*.apk
