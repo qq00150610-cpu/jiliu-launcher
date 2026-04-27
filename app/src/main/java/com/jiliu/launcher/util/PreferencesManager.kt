@@ -45,10 +45,20 @@ class PreferencesManager(private val context: Context) {
         get() = prefs.getLong(KEY_VIP_EXPIRE_TIME, 0L)
         set(value) = prefs.edit().putLong(KEY_VIP_EXPIRE_TIME, value).apply()
 
-    // Activation code
-    var activationCode: String?
-        get() = prefs.getString(KEY_ACTIVATION_CODE, null)
-        set(value) = prefs.edit().putString(KEY_ACTIVATION_CODE, value).apply()
+    // User data (JSON)
+    var currentUserJson: String?
+        get() = prefs.getString(KEY_CURRENT_USER, null)
+        set(value) = prefs.edit().putString(KEY_CURRENT_USER, value).apply()
+
+    // User password hash
+    var userPasswordHash: String?
+        get() = prefs.getString(KEY_USER_PASSWORD_HASH, null)
+        set(value) = prefs.edit().putString(KEY_USER_PASSWORD_HASH, value).apply()
+
+    // Last verification code (for mock)
+    var lastVerificationCode: String?
+        get() = prefs.getString(KEY_VERIFICATION_CODE, null)
+        set(value) = prefs.edit().putString(KEY_VERIFICATION_CODE, value).apply()
 
     // Grid columns
     var gridColumns: Int
@@ -123,7 +133,9 @@ class PreferencesManager(private val context: Context) {
         private const val KEY_EDGE_GESTURE_ENABLED = "edge_gesture_enabled"
         private const val KEY_IS_VIP = "is_vip"
         private const val KEY_VIP_EXPIRE_TIME = "vip_expire_time"
-        private const val KEY_ACTIVATION_CODE = "activation_code"
+        private const val KEY_CURRENT_USER = "current_user"
+        private const val KEY_USER_PASSWORD_HASH = "user_password_hash"
+        private const val KEY_VERIFICATION_CODE = "verification_code"
         private const val KEY_GRID_COLUMNS = "grid_columns"
         private const val KEY_GRID_ROWS = "grid_rows"
         private const val KEY_AUTO_WALLPAPER_ENABLED = "auto_wallpaper_enabled"

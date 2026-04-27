@@ -111,9 +111,15 @@
             android:exported="false"
             android:theme="@style/Theme.JiLiuLauncher" />
 
-        <!-- Activation Activity -->
+        <!-- Login Activity -->
         <activity
-            android:name=".ui.member.ActivationActivity"
+            android:name=".ui.member.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.JiLiuLauncher" />
+
+        <!-- Register Activity -->
+        <activity
+            android:name=".ui.member.RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.JiLiuLauncher" />
 
