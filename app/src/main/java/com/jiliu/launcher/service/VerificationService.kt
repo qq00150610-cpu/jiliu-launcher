@@ -355,7 +355,7 @@ class VerificationService(private val context: Context) {
             val message = MimeMessage(session).apply {
                 setFrom(InternetAddress(SMTP_USERNAME, SMTP_FROM_NAME))
                 setRecipients(Message.RecipientType.TO, InternetAddress.parse(email))
-                subject = subject
+                setSubject(subject, "UTF-8")
                 setContent(content, "text/html; charset=UTF-8")
             }
 
