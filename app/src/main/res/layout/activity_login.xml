@@ -198,7 +198,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="gone"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -222,6 +222,18 @@
                 android:textSize="16sp" />
 
         </LinearLayout>
+
+        <!-- Forgot Password -->
+        <TextView
+            android:id="@+id/tv_forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginBottom="16dp"
+            android:text="忘记密码？"
+            android:textColor="@color/primary"
+            android:textSize="14sp"
+            android:padding="8dp" />
 
         <!-- Login Button -->
         <Button

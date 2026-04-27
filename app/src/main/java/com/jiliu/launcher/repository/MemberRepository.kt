@@ -92,6 +92,96 @@ class MemberRepository(context: Context) {
     }
 
     /**
+     * Register with phone + password
+     */
+    suspend fun registerWithPhonePassword(phone: String, password: String): Result<User> = withContext(Dispatchers.IO) {
+        try {
+            if (phone.length != 11) {
+                return@withContext Result.failure(Exception("手机号格式错误"))
+            }
+            if (password.length < 6) {
+                return@withContext Result.failure(Exception("密码至少6位"))
+            }
+
+            // Mock: Create new user
+            val user = User(
+                userId = UUID.randomUUID().toString(),
+                phone = phone,
+                username = "用户${phone.takeLast(4)}",
+                vipLevel = MemberLevel.NONE,
+                createdAt = System.currentTimeMillis()
+            )
+
+            // Save user and password hash
+            preferencesManager.currentUserJson = gson.toJson(user)
+            preferencesManager.userPasswordHash = password.hashCode().toString()
+            
+            Result.success(user)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    /**
+     * Register with email + verification code
+     */
+    suspend fun registerWithEmail(email: String, code: String): Result<User> = withContext(Dispatchers.IO) {
+        try {
+            // Mock verification code validation
+            if (code.length != 6) {
+                return@withContext Result.failure(Exception("验证码格式错误"))
+            }
+
+            // Mock: Create new user
+            val user = User(
+                userId = UUID.randomUUID().toString(),
+                email = email,
+                username = "用户${email.substringBefore("@").takeLast(4)}",
+                vipLevel = MemberLevel.NONE,
+                createdAt = System.currentTimeMillis()
+            )
+
+            // Save user
+            preferencesManager.currentUserJson = gson.toJson(user)
+            
+            Result.success(user)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    /**
+     * Register with email + password
+     */
+    suspend fun registerWithEmailPassword(email: String, password: String): Result<User> = withContext(Dispatchers.IO) {
+        try {
+            if (!email.matches(Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))) {
+                return@withContext Result.failure(Exception("邮箱格式错误"))
+            }
+            if (password.length < 6) {
+                return@withContext Result.failure(Exception("密码至少6位"))
+            }
+
+            // Mock: Create new user
+            val user = User(
+                userId = UUID.randomUUID().toString(),
+                email = email,
+                username = "用户${email.substringBefore("@").takeLast(4)}",
+                vipLevel = MemberLevel.NONE,
+                createdAt = System.currentTimeMillis()
+            )
+
+            // Save user and password hash
+            preferencesManager.currentUserJson = gson.toJson(user)
+            preferencesManager.userPasswordHash = password.hashCode().toString()
+            
+            Result.success(user)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    /**
      * Register with username + password
      */
     suspend fun registerWithPassword(username: String, password: String): Result<User> = withContext(Dispatchers.IO) {
@@ -298,6 +388,6 @@ class MemberRepository(context: Context) {
      * Check if user has permission for VIP feature
      */
     fun hasVipPermission(): Boolean {
-        return isLoggedIn() && isVip()
+        return isVip()
     }
 }

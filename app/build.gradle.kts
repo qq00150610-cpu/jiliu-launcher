@@ -11,8 +11,8 @@ android {
         applicationId = "com.jiliu.launcher"
         minSdk = 24
         targetSdk = 34
-        versionCode = 3
-        versionName = "1.1.0"
+        versionCode = 4
+        versionName = "1.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -98,27 +98,47 @@ dependencies {
     
     // Image Loading
     implementation("io.coil-kt:coil:2.5.0")
-    implementation("io.coil-kt:coil-svg:2.5.0")
+    implementation("io.coil-kt:coil-video:2.5.0")
     
-    // ExifInterface
-    implementation("androidx.exifinterface:exifinterface:1.3.7")
-    
-    // ExoPlayer for Media
-    implementation("androidx.media3:media3-exoplayer:1.2.1")
-    implementation("androidx.media3:media3-ui:1.2.1")
-    implementation("androidx.media3:media3-session:1.2.1")
-    implementation("androidx.media:media:1.7.0")
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
     
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     
-    // Preferences
-    implementation("androidx.preference:preference-ktx:1.2.1")
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    // JSON
+    implementation("com.google.code.gson:gson:2.10.1")
+    
+    // Media3 (ExoPlayer)
+    implementation("androidx.media3:media3-exoplayer:1.2.0")
+    implementation("androidx.media3:media3-ui:1.2.0")
+    implementation("androidx.media3:media3-session:1.2.0")
+    
+    // Media
+    implementation("androidx.media:media:1.7.0")
+    
+    // Work Manager
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
+    
+    // Startup
+    implementation("androidx.startup:startup-runtime:1.1.1")
     
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // ==================== 新增依赖 ====================
+    
+    // 阿里云短信服务 SDK
+    // 前往 https://help.aliyun.com/document_detail/419273.html 获取最新版本
+    // implementation("com.aliyun:alibabacloud-dysmsapi20170525:2.0.24")
+    
+    // JavaMail for Android
+    // 用于发送邮箱验证码
+    implementation("com.sun.mail:android-mail:1.6.7")
+    implementation("com.sun.mail:android-activation:1.6.7")
+    
+    // ==================== 新增依赖结束 ====================
 }

@@ -122,6 +122,90 @@ class MemberViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     /**
+     * Register with phone + password
+     */
+    fun registerWithPhonePassword(phone: String, password: String) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _registerResult.value = RegisterState.Loading
+            
+            try {
+                val result = memberRepository.registerWithPhonePassword(phone, password)
+                
+                result.fold(
+                    onSuccess = { user ->
+                        _currentUser.value = user
+                        _isLoggedIn.value = true
+                        loadMemberInfo()
+                        _registerResult.value = RegisterState.Success(user)
+                    },
+                    onFailure = { error ->
+                        _registerResult.value = RegisterState.Error(error.message ?: "注册失败")
+                    }
+                )
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    /**
+     * Register with email + code
+     */
+    fun registerWithEmail(email: String, code: String) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _registerResult.value = RegisterState.Loading
+            
+            try {
+                val result = memberRepository.registerWithEmail(email, code)
+                
+                result.fold(
+                    onSuccess = { user ->
+                        _currentUser.value = user
+                        _isLoggedIn.value = true
+                        loadMemberInfo()
+                        _registerResult.value = RegisterState.Success(user)
+                    },
+                    onFailure = { error ->
+                        _registerResult.value = RegisterState.Error(error.message ?: "注册失败")
+                    }
+                )
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    /**
+     * Register with email + password
+     */
+    fun registerWithEmailPassword(email: String, password: String) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _registerResult.value = RegisterState.Loading
+            
+            try {
+                val result = memberRepository.registerWithEmailPassword(email, password)
+                
+                result.fold(
+                    onSuccess = { user ->
+                        _currentUser.value = user
+                        _isLoggedIn.value = true
+                        loadMemberInfo()
+                        _registerResult.value = RegisterState.Success(user)
+                    },
+                    onFailure = { error ->
+                        _registerResult.value = RegisterState.Error(error.message ?: "注册失败")
+                    }
+                )
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    /**
      * Register with username + password
      */
     fun registerWithPassword(username: String, password: String) {
@@ -210,15 +294,20 @@ class MemberViewModel(application: Application) : AndroidViewModel(application) 
      */
     fun logout() {
         viewModelScope.launch {
-            memberRepository.logout()
-            _currentUser.value = null
-            _isLoggedIn.value = false
-            loadMemberInfo()
+            _isLoading.value = true
+            try {
+                memberRepository.logout()
+                _currentUser.value = null
+                _isLoggedIn.value = false
+                loadMemberInfo()
+            } finally {
+                _isLoading.value = false
+            }
         }
     }
 
     /**
-     * Activate with code
+     * Activate VIP
      */
     fun activate(code: String) {
         viewModelScope.launch {
@@ -230,9 +319,8 @@ class MemberViewModel(application: Application) : AndroidViewModel(application) 
                 
                 result.fold(
                     onSuccess = { memberInfo ->
-                        _memberInfo.value = memberInfo
-                        checkLoginStatus()
                         _activationResult.value = ActivationState.Success(memberInfo)
+                        loadMemberInfo()
                     },
                     onFailure = { error ->
                         _activationResult.value = ActivationState.Error(error.message ?: "激活失败")
@@ -244,16 +332,7 @@ class MemberViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    /**
-     * Cancel VIP
-     */
-    fun cancelVip() {
-        viewModelScope.launch {
-            memberRepository.cancelVip()
-            loadMemberInfo()
-        }
-    }
-
+    // Login states
     sealed class LoginState {
         object Loading : LoginState()
         object CodeSent : LoginState()
@@ -261,12 +340,14 @@ class MemberViewModel(application: Application) : AndroidViewModel(application) 
         data class Error(val message: String) : LoginState()
     }
 
+    // Register states
     sealed class RegisterState {
         object Loading : RegisterState()
         data class Success(val user: User) : RegisterState()
         data class Error(val message: String) : RegisterState()
     }
 
+    // Activation states
     sealed class ActivationState {
         object Loading : ActivationState()
         data class Success(val memberInfo: MemberInfo) : ActivationState()
