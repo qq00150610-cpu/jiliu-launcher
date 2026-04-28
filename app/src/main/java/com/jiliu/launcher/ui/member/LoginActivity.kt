@@ -190,10 +190,10 @@ class LoginActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val result = if (isPasswordMode) {
                 val password = binding.editPassword.text.toString()
-                apiService.login(email, password, getDeviceId())
+                apiService.login(email, password, getDeviceIdentifier())
             } else {
                 val code = binding.editCode.text.toString()
-                apiService.loginWithCode(email, code, getDeviceId())
+                apiService.loginWithCode(email, code, getDeviceIdentifier())
             }
             
             binding.progressBar.visibility = View.GONE
@@ -230,7 +230,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun getDeviceId(): String {
+    private fun getDeviceIdentifier(): String {
         return android.provider.Settings.Secure.getString(
             contentResolver,
             android.provider.Settings.Secure.ANDROID_ID

@@ -173,7 +173,7 @@ class RegisterActivity : AppCompatActivity() {
                 email = currentEmail,
                 password = password,
                 verificationCode = code,
-                deviceId = getDeviceId()
+                deviceId = getDeviceIdentifier()
             )
             
             binding.progressBar.visibility = View.GONE
@@ -214,7 +214,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun getDeviceId(): String {
+    private fun getDeviceIdentifier(): String {
         return android.provider.Settings.Secure.getString(
             contentResolver,
             android.provider.Settings.Secure.ANDROID_ID

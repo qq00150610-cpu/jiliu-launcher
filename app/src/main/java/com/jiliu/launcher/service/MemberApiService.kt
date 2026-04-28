@@ -149,7 +149,7 @@ class MemberApiService(private val context: Context) {
     
     // ==================== 网络请求方法 ====================
     
-    private suspend fun <T> postRequest(endpoint: String, body: Map<String, Any?>): ApiResult<T> {
+    private suspend inline fun <reified T> postRequest(endpoint: String, body: Map<String, Any?>): ApiResult<T> {
         return withContext(Dispatchers.IO) {
             try {
                 val jsonBody = gson.toJson(body.filterValues { it != null })
@@ -161,7 +161,7 @@ class MemberApiService(private val context: Context) {
                     .build()
                 
                 val response = client.newCall(request).execute()
-                parseResponse(response)
+                parseResponseInline(response)
             } catch (e: Exception) {
                 Log.e(TAG, "请求失败: ${e.message}")
                 ApiResult.Error("网络请求失败: ${e.message}")
@@ -169,7 +169,7 @@ class MemberApiService(private val context: Context) {
         }
     }
     
-    private suspend fun <T> getRequest(url: String): ApiResult<T> {
+    private suspend inline fun <reified T> getRequest(url: String): ApiResult<T> {
         return withContext(Dispatchers.IO) {
             try {
                 val request = Request.Builder()
@@ -178,7 +178,7 @@ class MemberApiService(private val context: Context) {
                     .build()
                 
                 val response = client.newCall(request).execute()
-                parseResponse(response)
+                parseResponseInline(response)
             } catch (e: Exception) {
                 Log.e(TAG, "请求失败: ${e.message}")
                 ApiResult.Error("网络请求失败: ${e.message}")
@@ -186,7 +186,7 @@ class MemberApiService(private val context: Context) {
         }
     }
     
-    private inline fun <reified T> parseResponse(response: Response): ApiResult<T> {
+    private inline fun <reified T> parseResponseInline(response: Response): ApiResult<T> {
         return try {
             val body = response.body?.string()
             if (body == null) {

@@ -34,5 +34,6 @@ enum class MemberLevel {
 data class ActivationResult(
     val success: Boolean,
     val message: String,
-    val memberInfo: MemberInfo? = null
+    val memberInfo: MemberInfo? = null,
+    val remainingDays: Int = 0
 )
