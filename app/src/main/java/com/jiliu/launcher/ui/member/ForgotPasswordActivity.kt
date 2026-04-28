@@ -9,24 +9,24 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.jiliu.launcher.databinding.ActivityForgotPasswordBinding
-import com.jiliu.launcher.service.VerificationService
+import com.jiliu.launcher.service.MemberApiService
 import kotlinx.coroutines.launch
 
 /**
- * 忘记密码Activity
- * 支持通过手机号或邮箱找回密码
+ * 忘记密码页面
+ * 通过邮箱验证码重置密码
  */
 class ForgotPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityForgotPasswordBinding
-    private lateinit var verificationService: VerificationService
+    private val apiService by lazy { MemberApiService(this) }
     
-    private var isPhoneMode = true // true: phone, false: email
     private var countdownTimer: CountDownTimer? = null
-    private var lastTarget = ""
+    private var verificationStep = 1  // 1=输入邮箱, 2=输入验证码和新密码
+    private var currentEmail: String = ""
 
     companion object {
-        private const val COUNTDOWN_TIME = 60000L // 60秒倒计时
+        private const val COUNTDOWN_TIME = 60000L
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,177 +34,179 @@ class ForgotPasswordActivity : AppCompatActivity() {
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        verificationService = VerificationService(this)
-        
         setupUI()
     }
 
     private fun setupUI() {
-        // Close button
+        // 关闭按钮
         binding.btnClose.setOnClickListener {
-            finish()
+            if (verificationStep == 2) {
+                // 返回第一步
+                verificationStep = 1
+                updateUIForStep()
+            } else {
+                finish()
+            }
         }
 
-        // Toggle mode (phone/email)
-        binding.tvSwitchMode.setOnClickListener {
-            isPhoneMode = !isPhoneMode
-            updateUIForMode()
-        }
-
-        // Send verification code
+        // 发送验证码
         binding.btnSendCode.setOnClickListener {
             sendVerificationCode()
         }
 
-        // Reset password button
+        // 重置密码按钮
         binding.btnResetPassword.setOnClickListener {
-            resetPassword()
+            if (validateInput()) {
+                performResetPassword()
+            }
         }
 
-        // Back to login
+        // 返回登录
         binding.tvBackToLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
 
-        updateUIForMode()
+        updateUIForStep()
     }
 
-    private fun updateUIForMode() {
-        if (isPhoneMode) {
-            binding.layoutPhone.visibility = View.VISIBLE
-            binding.layoutEmail.visibility = View.GONE
-            binding.tvSwitchMode.text = "使用邮箱找回"
-            binding.tvInputHint.text = "请输入绑定的手机号"
-            binding.editPhoneOrEmail.hint = "请输入手机号"
-            binding.editPhoneOrEmail.inputType = android.text.InputType.TYPE_CLASS_PHONE
-        } else {
-            binding.layoutPhone.visibility = View.GONE
-            binding.layoutEmail.visibility = View.VISIBLE
-            binding.tvSwitchMode.text = "使用手机找回"
-            binding.tvInputHint.text = "请输入绑定的邮箱"
-            binding.editPhoneOrEmail.hint = "请输入邮箱地址"
-            binding.editPhoneOrEmail.inputType = android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+    private fun updateUIForStep() {
+        when (verificationStep) {
+            1 -> {
+                // 步骤1：输入邮箱
+                binding.layoutStep1.visibility = View.VISIBLE
+                binding.layoutStep2.visibility = View.GONE
+                binding.tvTitle.text = "找回密码"
+                binding.tvStepIndicator.text = "步骤 1/2"
+            }
+            2 -> {
+                // 步骤2：输入验证码和新密码
+                binding.layoutStep1.visibility = View.GONE
+                binding.layoutStep2.visibility = View.VISIBLE
+                binding.tvTitle.text = "设置新密码"
+                binding.tvStepIndicator.text = "步骤 2/2"
+                binding.tvEmailHint.text = "验证码已发送到\n$currentEmail"
+            }
         }
-        // Clear input
-        binding.editPhoneOrEmail.setText("")
-        binding.editCode.setText("")
-        binding.editNewPassword.setText("")
-        binding.editConfirmPassword.setText("")
-        stopCountdown()
     }
 
     private fun sendVerificationCode() {
-        val target = binding.editPhoneOrEmail.text.toString().trim()
-
-        if (TextUtils.isEmpty(target)) {
-            Toast.makeText(this, "请输入${if (isPhoneMode) "手机号" else "邮箱"}", Toast.LENGTH_SHORT).show()
+        val email = binding.editEmailStep1.text.toString().trim()
+        
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "请输入邮箱", Toast.LENGTH_SHORT).show()
             return
         }
-
-        if (isPhoneMode) {
-            if (target.length != 11 || !target.matches(Regex("^1[3-9]\\d{9}$"))) {
-                Toast.makeText(this, "手机号格式不正确", Toast.LENGTH_SHORT).show()
-                return
-            }
-        } else {
-            if (!target.matches(Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))) {
-                Toast.makeText(this, "邮箱格式不正确", Toast.LENGTH_SHORT).show()
-                return
-            }
+        
+        if (!isValidEmail(email)) {
+            Toast.makeText(this, "邮箱格式不正确", Toast.LENGTH_SHORT).show()
+            return
         }
-
-        lastTarget = target
+        
+        currentEmail = email
         binding.btnSendCode.isEnabled = false
-
+        
         lifecycleScope.launch {
-            val result = if (isPhoneMode) {
-                verificationService.sendSmsCode(target)
-            } else {
-                verificationService.sendEmailCode(target)
-            }
-
+            val result = apiService.sendCode(email, "reset")
+            
             result.fold(
                 onSuccess = {
-                    Toast.makeText(this@ForgotPasswordActivity, "验证码已发送", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ForgotPasswordActivity, "验证码已发送到您的邮箱", Toast.LENGTH_SHORT).show()
+                    verificationStep = 2
+                    updateUIForStep()
                     startCountdown()
                 },
-                onFailure = { error ->
-                    Toast.makeText(this@ForgotPasswordActivity, error.message ?: "发送失败", Toast.LENGTH_SHORT).show()
+                onFailure = { message, code ->
+                    Toast.makeText(this@ForgotPasswordActivity, message, Toast.LENGTH_SHORT).show()
+                    binding.btnSendCode.isEnabled = true
+                },
+                onError = { message ->
+                    Toast.makeText(this@ForgotPasswordActivity, message, Toast.LENGTH_SHORT).show()
                     binding.btnSendCode.isEnabled = true
                 }
             )
         }
     }
 
-    private fun resetPassword() {
-        val target = binding.editPhoneOrEmail.text.toString().trim()
-        val code = binding.editCode.text.toString().trim()
-        val newPassword = binding.editNewPassword.text.toString().trim()
-        val confirmPassword = binding.editConfirmPassword.text.toString().trim()
-
-        // 验证输入
-        if (TextUtils.isEmpty(target)) {
-            Toast.makeText(this, "请输入${if (isPhoneMode) "手机号" else "邮箱"}", Toast.LENGTH_SHORT).show()
-            return
-        }
-
+    private fun validateInput(): Boolean {
+        val code = binding.editCode.text.toString()
+        val newPassword = binding.editNewPassword.text.toString()
+        val confirmPassword = binding.editConfirmPassword.text.toString()
+        
         if (TextUtils.isEmpty(code)) {
             Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show()
-            return
+            return false
         }
-
+        
         if (code.length != 6) {
-            Toast.makeText(this, "验证码格式不正确", Toast.LENGTH_SHORT).show()
-            return
+            Toast.makeText(this, "验证码为6位数字", Toast.LENGTH_SHORT).show()
+            return false
         }
-
+        
         if (TextUtils.isEmpty(newPassword)) {
             Toast.makeText(this, "请输入新密码", Toast.LENGTH_SHORT).show()
-            return
+            return false
         }
-
-        if (newPassword.length < 6) {
-            Toast.makeText(this, "密码至少6位", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        if (newPassword != confirmPassword) {
-            Toast.makeText(this, "两次密码输入不一致", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        // 验证验证码
-        val isCodeValid = if (isPhoneMode) {
-            verificationService.verifySmsCode(target, code)
-        } else {
-            verificationService.verifyEmailCode(target, code)
-        }
-
-        if (!isCodeValid) {
-            Toast.makeText(this, "验证码错误或已过期", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        // 显示重置成功
-        Toast.makeText(this, "密码重置成功", Toast.LENGTH_SHORT).show()
         
-        // 跳转到登录页面
-        startActivity(Intent(this, LoginActivity::class.java).apply {
-            putExtra("reset_password", true)
-            putExtra("login_target", target)
-        })
-        finish()
+        if (newPassword.length < 6) {
+            Toast.makeText(this, "密码长度至少6位", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        
+        if (newPassword != confirmPassword) {
+            Toast.makeText(this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        
+        return true
+    }
+
+    private fun performResetPassword() {
+        val code = binding.editCode.text.toString()
+        val newPassword = binding.editNewPassword.text.toString()
+        
+        binding.btnResetPassword.isEnabled = false
+        binding.progressBar.visibility = View.VISIBLE
+        
+        lifecycleScope.launch {
+            val result = apiService.resetPassword(
+                email = currentEmail,
+                newPassword = newPassword,
+                verificationCode = code
+            )
+            
+            binding.progressBar.visibility = View.GONE
+            binding.btnResetPassword.isEnabled = true
+            
+            result.fold(
+                onSuccess = {
+                    Toast.makeText(this@ForgotPasswordActivity, "密码重置成功！", Toast.LENGTH_SHORT).show()
+                    
+                    // 跳转到登录页
+                    startActivity(Intent(this@ForgotPasswordActivity, LoginActivity::class.java).apply {
+                        putExtra("reset_success", true)
+                        putExtra("email", currentEmail)
+                    })
+                    finish()
+                },
+                onFailure = { message, _ ->
+                    Toast.makeText(this@ForgotPasswordActivity, message, Toast.LENGTH_SHORT).show()
+                },
+                onError = { message ->
+                    Toast.makeText(this@ForgotPasswordActivity, message, Toast.LENGTH_SHORT).show()
+                }
+            )
+        }
     }
 
     private fun startCountdown() {
-        binding.btnSendCode.text = "重新发送(60)"
-        binding.btnSendCode.isEnabled = false
+        binding.btnSendCodeStep2.text = "重新发送(60)"
+        binding.btnSendCodeStep2.isEnabled = false
 
         countdownTimer = object : CountDownTimer(COUNTDOWN_TIME, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val seconds = (millisUntilFinished / 1000).toInt()
-                binding.btnSendCode.text = "重新发送($seconds)"
+                binding.btnSendCodeStep2.text = "重新发送($seconds)"
             }
 
             override fun onFinish() {
@@ -216,12 +218,30 @@ class ForgotPasswordActivity : AppCompatActivity() {
     private fun stopCountdown() {
         countdownTimer?.cancel()
         countdownTimer = null
-        binding.btnSendCode.text = "获取验证码"
-        binding.btnSendCode.isEnabled = true
+        binding.btnSendCodeStep2.text = "重新发送"
+        binding.btnSendCodeStep2.isEnabled = true
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        val emailRegex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")
+        return email.matches(emailRegex)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         stopCountdown()
+    }
+
+    // 扩展函数：处理不同类型的结果
+    private inline fun <T> MemberApiService.ApiResult<T>.fold(
+        onSuccess: (T) -> Unit,
+        onFailure: (String, String?) -> Unit,
+        onError: (String) -> Unit
+    ) {
+        when (this) {
+            is MemberApiService.ApiResult.Success -> onSuccess(data)
+            is MemberApiService.ApiResult.Failure -> onFailure(message, code)
+            is MemberApiService.ApiResult.Error -> onError(message)
+        }
     }
 }

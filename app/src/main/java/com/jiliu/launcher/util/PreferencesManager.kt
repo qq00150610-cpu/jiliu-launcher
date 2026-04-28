@@ -45,20 +45,10 @@ class PreferencesManager(private val context: Context) {
         get() = prefs.getLong(KEY_VIP_EXPIRE_TIME, 0L)
         set(value) = prefs.edit().putLong(KEY_VIP_EXPIRE_TIME, value).apply()
 
-    // User data (JSON)
-    var currentUserJson: String?
-        get() = prefs.getString(KEY_CURRENT_USER, null)
-        set(value) = prefs.edit().putString(KEY_CURRENT_USER, value).apply()
-
-    // User password hash
-    var userPasswordHash: String?
-        get() = prefs.getString(KEY_USER_PASSWORD_HASH, null)
-        set(value) = prefs.edit().putString(KEY_USER_PASSWORD_HASH, value).apply()
-
-    // Last verification code (for mock)
-    var lastVerificationCode: String?
-        get() = prefs.getString(KEY_VERIFICATION_CODE, null)
-        set(value) = prefs.edit().putString(KEY_VERIFICATION_CODE, value).apply()
+    // Activation code
+    var activationCode: String?
+        get() = prefs.getString(KEY_ACTIVATION_CODE, null)
+        set(value) = prefs.edit().putString(KEY_ACTIVATION_CODE, value).apply()
 
     // Grid columns
     var gridColumns: Int
@@ -105,31 +95,6 @@ class PreferencesManager(private val context: Context) {
         get() = prefs.getBoolean(KEY_BLUETOOTH_AUTO_PLAY, true)
         set(value) = prefs.edit().putBoolean(KEY_BLUETOOTH_AUTO_PLAY, value).apply()
 
-    // Generic get/set methods
-    fun getString(key: String, defaultValue: String = ""): String {
-        return prefs.getString(key, defaultValue) ?: defaultValue
-    }
-
-    fun setString(key: String, value: String) {
-        prefs.edit().putString(key, value).apply()
-    }
-
-    fun getBoolean(key: String, defaultValue: Boolean = false): Boolean {
-        return prefs.getBoolean(key, defaultValue)
-    }
-
-    fun setBoolean(key: String, value: Boolean) {
-        prefs.edit().putBoolean(key, value).apply()
-    }
-
-    fun getLong(key: String, defaultValue: Long = 0L): Long {
-        return prefs.getLong(key, defaultValue)
-    }
-
-    fun setLong(key: String, value: Long) {
-        prefs.edit().putLong(key, value).apply()
-    }
-
     // DataStore-based flow for reactive updates
     val homeModeFlow: Flow<Int> = context.dataStore.data.map { prefs ->
         prefs[PreferencesKeys.HOME_MODE] ?: 0
@@ -158,9 +123,7 @@ class PreferencesManager(private val context: Context) {
         private const val KEY_EDGE_GESTURE_ENABLED = "edge_gesture_enabled"
         private const val KEY_IS_VIP = "is_vip"
         private const val KEY_VIP_EXPIRE_TIME = "vip_expire_time"
-        private const val KEY_CURRENT_USER = "current_user"
-        private const val KEY_USER_PASSWORD_HASH = "user_password_hash"
-        private const val KEY_VERIFICATION_CODE = "verification_code"
+        private const val KEY_ACTIVATION_CODE = "activation_code"
         private const val KEY_GRID_COLUMNS = "grid_columns"
         private const val KEY_GRID_ROWS = "grid_rows"
         private const val KEY_AUTO_WALLPAPER_ENABLED = "auto_wallpaper_enabled"

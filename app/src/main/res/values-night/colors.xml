@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 夜间模式配色 - 氢桌面风格深色版 -->
+    <!-- 主色调 -->
+    <color name="primary">#00E5BE</color>
+    <color name="primary_dark">#00C9A7</color>
+    <color name="primary_light">#7DDFC3</color>
+
+    <!-- 强调色 -->
+    <color name="accent">#FF9B8A</color>
+    <color name="accent_dark">#FF8066</color>
+    <color name="accent_light">#FFBBA8</color>
+
+    <!-- 背景色 -->
+    <color name="background">#1A1A2E</color>
+    <color name="background_dark">#0D0D15</color>
+    <color name="surface">#252542</color>
+    <color name="card_background">#2D2D4A</color>
+
+    <!-- 文字颜色 -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <color name="text_hint">#707090</color>
+
+    <!-- 状态颜色 -->
+    <color name="success">#00D9A5</color>
+    <color name="warning">#FFD966</color>
+    <color name="error">#FF8585</color>
+
+    <!-- VIP颜色 -->
+    <color name="vip_gold">#FFE066</color>
+    <color name="vip_background">#3D3A2E</color>
+
+    <!-- 渐变颜色 -->
+    <color name="gradient_start">#252542</color>
+    <color name="gradient_end">#1A1A2E</color>
+
+    <!-- 透明色 -->
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#80000000</color>
+
+    <!-- 阴影色 -->
+    <color name="shadow">#33000000</color>
+    <color name="divider">#3D3D5C</color>
+</resources>
