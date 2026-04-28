@@ -13,7 +13,7 @@ import com.jiliu.launcher.model.PayMethod
 import com.jiliu.launcher.model.PayResult
 import com.jiliu.launcher.model.VipPackage
 import com.jiliu.launcher.service.AlipayService
-import com.jiliu.launcher.service.MemberManager
+import com.jiliu.launcher.util.PreferencesManager
 import com.jiliu.launcher.service.WechatPayService
 import kotlinx.coroutines.launch
 
@@ -257,7 +257,16 @@ class PayResultActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 try {
                     // 更新VIP状态
-                    MemberManager.getInstance().activateVip(pkg)
+                    val preferencesManager = PreferencesManager(this@PayResultActivity)
+                    val currentExpireTime = preferencesManager.vipExpireTime
+                    val now = System.currentTimeMillis()
+                    val newExpireTime = if (currentExpireTime > now) {
+                        currentExpireTime + (pkg.duration * 24 * 60 * 60 * 1000L)
+                    } else {
+                        now + (pkg.duration * 24 * 60 * 60 * 1000L)
+                    }
+                    preferencesManager.isVip = true
+                    preferencesManager.vipExpireTime = newExpireTime
                     
                     Toast.makeText(
                         this@PayResultActivity,
