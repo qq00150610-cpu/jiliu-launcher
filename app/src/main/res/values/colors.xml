@@ -37,7 +37,6 @@
     <!-- Transparent -->
     <color name="transparent">#00000000</color>
     <color name="semi_transparent">#80000000</color>
-</resources>
     
     <!-- Payment Colors -->
     <color name="alipay_blue">#1677FF</color>
@@ -49,5 +48,5 @@
     
     <!-- Standard Colors -->
     <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
+    <color name="black">#00000000</color>
 </resources>
