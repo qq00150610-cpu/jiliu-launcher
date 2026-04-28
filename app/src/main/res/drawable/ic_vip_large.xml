@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="80dp"
+    android:height="80dp"
+    android:viewportWidth="80"
+    android:viewportHeight="80">
+    <!-- 大VIP图标 -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M40,4C20.12,4 4,20.12 4,40s16.12,36 36,36 36,-16.12 36,-36S59.88,4 40,4z" />
+    <path
+        android:fillColor="#B8860B"
+        android:pathData="M40,8c-17.67,0 -32,14.33 -32,32s14.33,32 32,32 32,-14.33 32,-32S57.67,8 40,8z" />
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M40,12c-15.46,0 -28,12.54 -28,28s12.54,28 28,28 28,-12.54 28,-28S55.46,12 40,12z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,28l-8,24h6l2,-6h12l2,6h6l-8,-24H30zM38,40l2,-8 2,8h-4z" />
+</vector>

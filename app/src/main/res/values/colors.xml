@@ -38,3 +38,16 @@
     <color name="transparent">#00000000</color>
     <color name="semi_transparent">#80000000</color>
 </resources>
+    
+    <!-- Payment Colors -->
+    <color name="alipay_blue">#1677FF</color>
+    <color name="wechat_green">#07C160</color>
+    
+    <!-- Card Colors -->
+    <color name="card_border">#4D4D4D</color>
+    <color name="vip_card_selected">#3D3520</color>
+    
+    <!-- Standard Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>

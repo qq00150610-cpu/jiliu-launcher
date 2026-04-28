@@ -129,6 +129,18 @@
             android:exported="false"
             android:theme="@style/Theme.JiLiuLauncher" />
 
+        <!-- VIP Purchase Activity -->
+        <activity
+            android:name=".ui.vip.VipPurchaseActivity"
+            android:exported="false"
+            android:theme="@style/Theme.JiLiuLauncher" />
+
+        <!-- Activation Code Purchase Activity -->
+        <activity
+            android:name=".ui.vip.ActivationCodePurchaseActivity"
+            android:exported="false"
+            android:theme="@style/Theme.JiLiuLauncher" />
+
         <!-- Video Player Activity -->
         <activity
             android:name=".ui.player.PlayerActivity"

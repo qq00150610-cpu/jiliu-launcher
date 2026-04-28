@@ -46,11 +46,8 @@ class MemberActivity : AppCompatActivity() {
 
         // Open VIP button
         binding.btnOpenVip.setOnClickListener {
-            if (viewModel.isLoggedIn()) {
-                showActivationDialog()
-            } else {
-                showLoginPrompt()
-            }
+            // 跳转到VIP购买页面
+            startActivity(Intent(this, com.jiliu.launcher.ui.vip.VipPurchaseActivity::class.java))
         }
 
         // Settings button
