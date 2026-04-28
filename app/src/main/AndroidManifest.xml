@@ -61,6 +61,7 @@
         android:launchMode="singleTask"
         android:excludeFromRecents="false"
         android:resizeableActivity="true"
+        android:usesCleartextTraffic="true"
         tools:targetApi="34">
 
         <!-- Main Launcher Activity -->

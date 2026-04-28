@@ -1,0 +1,398 @@
+[
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_fragment_dock.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/fragment_dock.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_main.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_vip_large.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_vip_large.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_close.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_close.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_item_shortcut.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/item_shortcut.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_previous.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_previous.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_tab_selector.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_tab_selector.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_play.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_play.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_button_primary.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_button_primary.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_arrow_up.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_arrow_up.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_automatic.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_automatic.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_toolbar_button.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_toolbar_button.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_register.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_register.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_image.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_image.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_wechat.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_wechat.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_tag.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_tag.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_home.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_item_home_app.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/item_home_app.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_file_manager.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_file_manager.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_item_wallpaper.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/item_wallpaper.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_item_dock_app.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/item_dock_app.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_circle_button_primary.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_circle_button_primary.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_back.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_back.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_dock.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_dock.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/anim_slide_up.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/anim/slide_up.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_app.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_app.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_circle_button_transparent.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_circle_button_transparent.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_item_vip_package.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/item_vip_package.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_next.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_next.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_pause.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_pause.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_wallpaper.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_wallpaper.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_app_manager.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_app_manager.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_cleanup.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_cleanup.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_alipay.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_alipay.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_repeat_one.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_repeat_one.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_discount_tag.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_discount_tag.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_input.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_input.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_item_recent_task.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/item_recent_task.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_item_wallpaper_category.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/item_wallpaper_category.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_item_file.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/item_file.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/anim_shake.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/anim/shake.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_pay_method.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_pay_method.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_activation_code_purchase.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_activation_code_purchase.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_fragment_home2.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/fragment_home2.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_pay_result.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_pay_result.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/xml_accessibility_service_config.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/xml/accessibility_service_config.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_recent_tasks.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_recent_tasks.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_member.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_member.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_settings.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_settings.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_info.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_info.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_shuffle.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_shuffle.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_grid.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_grid.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_fragment_home1.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/fragment_home1.xml"
+    },
+    {
+        "merged": "com.jiliu.launcher.app-merged_res-4:/layout_activity_vip_purchase.xml.flat",
+        "source": "com.jiliu.launcher.app-main-5:/layout/activity_vip_purchase.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_item_featured_wallpaper.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/item_featured_wallpaper.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_switch.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_switch.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_settings.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/anim_scale_in.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/anim/scale_in.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_item_app.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/item_app.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_repeat.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_repeat.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_recent.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_recent.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_arrow_right.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_arrow_right.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_view_music_mini_player.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/view_music_mini_player.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_archive.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_archive.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_tab_storage.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/tab_storage.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_payment.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_payment.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_refresh.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_refresh.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_video.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_video.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_add.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_file.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_file.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_wallpaper_placeholder.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/wallpaper_placeholder.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_music.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_music.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_vip.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_vip.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_edit_text.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_edit_text.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_gesture.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_gesture.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_permission.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_permission.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_failed.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_failed.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_wallpaper.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_wallpaper.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_vip_purchase.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_vip_purchase.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_cleanup.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_cleanup.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_button_outline.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_button_outline.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_player.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_player.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_dock_item.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_dock_item.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_folder.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_folder.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_check_circle.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_check_circle.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_login.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_login.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_success.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_success.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_document.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_document.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_image_preview.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_image_preview.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_bg_circle_button.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/bg_circle_button.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_apps2.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_apps2.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_audio.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_audio.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_activation_code.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_activation_code.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/drawable_ic_apps.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/drawable/ic_apps.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_activity_forgot_password.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/activity_forgot_password.xml"
+    },
+    {
+        "merged": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-merged_res-4:/layout_item_home2_app.xml.flat",
+        "source": "/root/.gradle/daemon/8.11.1/com.jiliu.launcher.app-main-5:/layout/item_home2_app.xml"
+    }
+]

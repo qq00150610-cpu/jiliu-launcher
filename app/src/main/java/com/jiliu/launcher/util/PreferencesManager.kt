@@ -114,6 +114,22 @@ class PreferencesManager(private val context: Context) {
         prefs.edit().putString(key, value).apply()
     }
 
+    fun getBoolean(key: String, defaultValue: Boolean = false): Boolean {
+        return prefs.getBoolean(key, defaultValue)
+    }
+
+    fun setBoolean(key: String, value: Boolean) {
+        prefs.edit().putBoolean(key, value).apply()
+    }
+
+    fun getLong(key: String, defaultValue: Long = 0L): Long {
+        return prefs.getLong(key, defaultValue)
+    }
+
+    fun setLong(key: String, value: Long) {
+        prefs.edit().putLong(key, value).apply()
+    }
+
     // DataStore-based flow for reactive updates
     val homeModeFlow: Flow<Int> = context.dataStore.data.map { prefs ->
         prefs[PreferencesKeys.HOME_MODE] ?: 0

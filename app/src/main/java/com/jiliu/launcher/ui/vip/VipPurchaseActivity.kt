@@ -1,30 +1,35 @@
 package com.jiliu.launcher.ui.vip
 
-import android.content.Intent
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.jiliu.launcher.R
 import com.jiliu.launcher.databinding.ActivityVipPurchaseBinding
-import com.jiliu.launcher.model.PayMethod
-import com.jiliu.launcher.model.VipPackage
 import com.jiliu.launcher.viewmodel.VipPurchaseViewModel
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 /**
- * VIP购买页面
+ * VIP购买页面 - 激活码购买方式
+ * 联系电话：13325136914
+ * QQ：251662887
+ * 
+ * 功能：
+ * 1. 新用户免费试用15天
+ * 2. 激活码激活（设备绑定）
  */
 class VipPurchaseActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityVipPurchaseBinding
     private val viewModel: VipPurchaseViewModel by viewModels()
-    private lateinit var packageAdapter: VipPackageAdapter
+
+    companion object {
+        const val CONTACT_PHONE = "13325136914"
+        const val CONTACT_QQ = "251662887"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +37,8 @@ class VipPurchaseActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupUI()
-        setupRecyclerView()
         observeData()
+        checkTrialStatus()
     }
 
     private fun setupUI() {
@@ -42,170 +47,140 @@ class VipPurchaseActivity : AppCompatActivity() {
             finish()
         }
 
-        // 支付宝
-        binding.layoutAlipay.setOnClickListener {
-            selectPayMethod(PayMethod.ALIPAY)
+        // 免费试用按钮
+        binding.btnTrial.setOnClickListener {
+            showTrialConfirmDialog()
         }
 
-        // 微信支付
-        binding.layoutWechat.setOnClickListener {
-            selectPayMethod(PayMethod.WECHAT)
-        }
-
-        // 激活码
-        binding.layoutActivationCode.setOnClickListener {
-            selectPayMethod(PayMethod.ACTIVATION_CODE)
-        }
-
-        // 购买按钮
-        binding.btnPurchase.setOnClickListener {
-            when (viewModel.selectedPayMethod.value) {
-                PayMethod.ACTIVATION_CODE -> {
-                    // 跳转激活码页面
-                    startActivity(Intent(this, ActivationCodePurchaseActivity::class.java))
-                }
-                else -> {
-                    // 显示模拟支付对话框
-                    showSimulatePayDialog()
-                }
-            }
-        }
-
-        // 模拟支付按钮（用于演示）
-        binding.btnSimulatePay.setOnClickListener {
-            showSimulatePayDialog()
-        }
-    }
-
-    private fun setupRecyclerView() {
-        packageAdapter = VipPackageAdapter { vipPackage ->
-            viewModel.selectPackage(vipPackage)
-        }
-        
-        binding.recyclerPackages.apply {
-            layoutManager = LinearLayoutManager(this@VipPurchaseActivity)
-            adapter = packageAdapter
-        }
-    }
-
-    private fun observeData() {
-        // 观察套餐列表
-        viewModel.vipPackages.observe(this) { packages ->
-            packageAdapter.submitList(packages)
-            packageAdapter.setSelectedPackage(viewModel.selectedPackage.value)
-        }
-
-        // 观察选中的套餐
-        viewModel.selectedPackage.observe(this) { selectedPackage ->
-            packageAdapter.setSelectedPackage(selectedPackage)
-            updatePackageInfo(selectedPackage)
-        }
-
-        // 观察选中的支付方式
-        viewModel.selectedPayMethod.observe(this) { payMethod ->
-            updatePayMethodUI(payMethod)
-        }
-
-        // 观察支付状态
-        viewModel.payState.observe(this) { state ->
-            when (state) {
-                is VipPurchaseViewModel.PayState.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    binding.btnPurchase.isEnabled = false
-                }
-                is VipPurchaseViewModel.PayState.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    showSuccessDialog(state.message, state.remainingDays)
-                }
-                is VipPurchaseViewModel.PayState.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    binding.btnPurchase.isEnabled = true
-                    Toast.makeText(this, state.message, Toast.LENGTH_SHORT).show()
-                }
-                is VipPurchaseViewModel.PayState.NeedActivationCode -> {
-                    binding.progressBar.visibility = View.GONE
-                    startActivity(Intent(this, ActivationCodePurchaseActivity::class.java))
-                }
-                else -> {
-                    binding.progressBar.visibility = View.GONE
-                    binding.btnPurchase.isEnabled = true
-                }
-            }
-        }
-    }
-
-    private fun updatePackageInfo(packageInfo: VipPackage?) {
-        if (packageInfo != null) {
-            binding.tvPackageName.text = packageInfo.name
-            binding.tvPackagePrice.text = "¥${String.format("%.2f", packageInfo.currentPrice)}"
-            binding.tvOriginalPrice.text = "原价 ¥${String.format("%.2f", packageInfo.originalPrice)}"
-            binding.tvDiscount.text = packageInfo.discount ?: ""
-            
-            if (packageInfo.hasDiscount) {
-                binding.tvDiscount.visibility = View.VISIBLE
-                binding.tvOriginalPrice.visibility = View.VISIBLE
+        // 粘贴按钮
+        binding.btnPaste.setOnClickListener {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData = clipboard.primaryClip
+            if (clipData != null && clipData.itemCount > 0) {
+                val text = clipData.getItemAt(0).text.toString()
+                binding.etActivationCode.setText(text)
+                Toast.makeText(this, "已粘贴", Toast.LENGTH_SHORT).show()
             } else {
-                binding.tvDiscount.visibility = View.GONE
-                binding.tvOriginalPrice.visibility = View.GONE
+                Toast.makeText(this, "剪贴板为空", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // 激活码规则
+        binding.tvCodeRules.setOnClickListener {
+            showCodeRulesDialog()
+        }
+
+        // 立即激活按钮
+        binding.btnActivate.setOnClickListener {
+            val code = binding.etActivationCode.text.toString().trim()
+            if (code.isEmpty()) {
+                Toast.makeText(this, "请输入激活码", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            viewModel.redeemActivationCode(code)
         }
     }
 
-    private fun selectPayMethod(payMethod: PayMethod) {
-        viewModel.selectPayMethod(payMethod)
-    }
+    private fun checkTrialStatus() {
+        val canUseTrial = viewModel.canUseTrial()
+        val trialDays = viewModel.getTrialRemainingDays()
 
-    private fun updatePayMethodUI(payMethod: PayMethod) {
-        // 重置所有选中状态
-        binding.ivAlipayCheck.visibility = View.GONE
-        binding.ivWechatCheck.visibility = View.GONE
-        binding.ivActivationCodeCheck.visibility = View.GONE
-        
-        binding.tvAlipay.setTextColor(getColor(R.color.text_secondary))
-        binding.tvWechat.setTextColor(getColor(R.color.text_secondary))
-        binding.tvActivationCode.setTextColor(getColor(R.color.text_secondary))
-        
-        // 设置选中状态
-        when (payMethod) {
-            PayMethod.ALIPAY -> {
-                binding.ivAlipayCheck.visibility = View.VISIBLE
-                binding.tvAlipay.setTextColor(getColor(R.color.alipay_blue))
-            }
-            PayMethod.WECHAT -> {
-                binding.ivWechatCheck.visibility = View.VISIBLE
-                binding.tvWechat.setTextColor(getColor(R.color.wechat_green))
-            }
-            PayMethod.ACTIVATION_CODE -> {
-                binding.ivActivationCodeCheck.visibility = View.VISIBLE
-                binding.tvActivationCode.setTextColor(getColor(R.color.vip_gold))
-            }
-        }
-        
-        // 更新按钮文字
-        binding.btnPurchase.text = when (payMethod) {
-            PayMethod.ACTIVATION_CODE -> "前往兑换"
-            else -> "立即开通"
+        if (trialDays > 0) {
+            // 正在使用试用
+            binding.btnTrial.visibility = View.GONE
+            binding.tvTrialStatus.text = "试用期剩余 $trialDays 天"
+            binding.tvTrialStatus.setTextColor(getColor(R.color.vip_gold))
+        } else if (canUseTrial) {
+            // 可以使用试用
+            binding.btnTrial.visibility = View.VISIBLE
+            binding.tvTrialStatus.text = "首次使用可免费体验全部VIP功能"
+        } else {
+            // 已使用过试用
+            binding.btnTrial.visibility = View.GONE
+            binding.tvTrialStatus.text = "您已使用过免费试用，请购买激活码"
+            binding.tvTrialStatus.setTextColor(getColor(R.color.text_hint))
         }
     }
 
-    private fun showSimulatePayDialog() {
-        val packageInfo = viewModel.selectedPackage.value ?: return
-        val payMethod = viewModel.selectedPayMethod.value ?: PayMethod.ALIPAY
-        
+    private fun showTrialConfirmDialog() {
         AlertDialog.Builder(this)
-            .setTitle("确认支付")
-            .setMessage("确认支付 ¥${String.format("%.2f", packageInfo.currentPrice)} 开通${packageInfo.name}？")
-            .setPositiveButton("确认支付") { _, _ ->
-                viewModel.simulatePay()
+            .setTitle("领取免费试用")
+            .setMessage("确认领取15天VIP免费试用吗？\n\n每个设备只能领取一次，领取后立即生效。")
+            .setPositiveButton("立即领取") { _, _ ->
+                activateTrial()
             }
             .setNegativeButton("取消", null)
             .show()
     }
 
+    private fun activateTrial() {
+        binding.progressBar.visibility = View.VISIBLE
+        
+        val result = viewModel.activateTrial()
+        
+        binding.progressBar.visibility = View.GONE
+        
+        if (result.success) {
+            showSuccessDialog(result.message, result.remainingDays)
+            checkTrialStatus()
+        } else {
+            Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun observeData() {
+        viewModel.activationState.observe(this) { state ->
+            when (state) {
+                is VipPurchaseViewModel.ActivationState.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.btnActivate.isEnabled = false
+                }
+                is VipPurchaseViewModel.ActivationState.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.btnActivate.isEnabled = true
+                    showSuccessDialog(state.message, state.remainingDays)
+                }
+                is VipPurchaseViewModel.ActivationState.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.btnActivate.isEnabled = true
+                    Toast.makeText(this, state.message, Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.btnActivate.isEnabled = true
+                }
+            }
+        }
+    }
+
+    private fun showCodeRulesDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("激活码规则")
+            .setMessage("""
+                【激活码格式】
+                • 月卡：JLM + 13位字符
+                • 季卡：JLS + 13位字符  
+                • 年卡：JLY + 13位字符
+                
+                【购买方式】
+                电话：13325136914
+                QQ：251662887
+                
+                【使用规则】
+                1. 每个激活码仅可使用一次
+                2. 激活码绑定当前设备，不可更换
+                3. VIP权益到期后自动失效
+                4. 新用户可免费试用15天
+                5. 如有问题请联系客服
+            """.trimIndent())
+            .setPositiveButton("知道了", null)
+            .show()
+    }
+
     private fun showSuccessDialog(message: String, remainingDays: Int) {
         AlertDialog.Builder(this)
-            .setTitle("支付成功")
-            .setMessage("$message\n\n剩余 $remainingDays 天")
+            .setTitle("激活成功")
+            .setMessage("$message\n\nVIP有效期：$remainingDays 天")
             .setPositiveButton("确定") { _, _ ->
                 setResult(RESULT_OK)
                 finish()
