@@ -11,8 +11,8 @@ android {
         applicationId = "com.jiliu.launcher"
         minSdk = 24
         targetSdk = 34
-        versionCode = 5
-        versionName = "1.3.0"
+        versionCode = 6
+        versionName = "1.4.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -161,10 +161,12 @@ dependencies {
     // 支付宝支付 SDK
     // 前往 https://open.alipay.com/development/document.htm 获取AppId和密钥
     // implementation("com.alipay.sdk:alipay-sdk-java:4.38.0")
+    // 暂时注释，正式上线时取消注释
     
     // 微信支付 SDK
     // 前往 https://pay.weixin.qq.com/wiki/doc/apiv3/open/pay/chapter6_3_2.shtml 获取配置
     // implementation("com.tencent.mm.opensdk:wechat-sdk-android:6.8.0")
+    // 暂时注释，正式上线时取消注释
     
     // ==================== 支付功能依赖结束 ====================
 }

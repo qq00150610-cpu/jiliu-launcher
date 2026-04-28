@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="40dp"
-    android:height="40dp"
-    android:viewportWidth="40"
-    android:viewportHeight="40">
-    <!-- 支付宝图标 -->
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
     <path
-        android:fillColor="#1677FF"
-        android:pathData="M20,4C10.06,4 2,12.06 2,22s8.06,18 18,18 18,-8.06 18,-18S29.94,4 20,4z" />
+        android:fillColor="#1890FF"
+        android:pathData="M12.06,0.37L3.77,4.91C3.32,5.15 2.96,5.63 2.84,6.21L1.05,18.21C0.92,18.85 1.29,19.49 1.92,19.62C2.06,19.65 2.2,19.66 2.34,19.65L12.06,17.65L21.78,19.65C21.32,19.65 20.86,19.38 20.6,18.95C20.33,18.52 20.28,18.02 20.48,17.59L12.06,0.37Z"/>
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M24.5,28H23v-1.5h1.5V28zM24.5,25.5H23V24h1.5v1.5zM24.5,23H23v-1.5h1.5V23zM17,23c-2.2,0 -4,1.8 -4,4v2h8v-2c0,-2.2 -1.8,-4 -4,-4zM27,27h3v-2h-3v-2h3v-2h-3v-1h3v-2h-3v-1h-2v8h-1v3h1v-1h3v1h-2v3h8v-3zM13,29h2v-2h3v2h2v-2h3v2h1v-3h-1v-1h-3v1h-3v-1h-3v1h-1v3h2z" />
+        android:pathData="M12.06,3.37L17,16.01L17.94,4.45C18,4.45 12.06,3.37 12.06,3.37Z"/>
 </vector>

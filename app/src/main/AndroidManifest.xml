@@ -141,6 +141,12 @@
             android:exported="false"
             android:theme="@style/Theme.JiLiuLauncher" />
 
+        <!-- Pay Result Activity -->
+        <activity
+            android:name=".ui.pay.PayResultActivity"
+            android:exported="false"
+            android:theme="@style/Theme.JiLiuLauncher" />
+
         <!-- Video Player Activity -->
         <activity
             android:name=".ui.player.PlayerActivity"
