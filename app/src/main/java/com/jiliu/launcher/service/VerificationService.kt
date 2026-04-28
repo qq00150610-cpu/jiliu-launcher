@@ -2,18 +2,10 @@ package com.jiliu.launcher.service
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Base64
+import android.util.Log
 import com.jiliu.launcher.util.PreferencesManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.util.Properties
-import javax.mail.Authenticator
-import javax.mail.Message
-import javax.mail.PasswordAuthentication
-import javax.mail.Session
-import javax.mail.Transport
-import javax.mail.internet.InternetAddress
-import javax.mail.internet.MimeMessage
 import kotlin.random.Random
 
 /**
@@ -25,6 +17,7 @@ import kotlin.random.Random
 class VerificationService(private val context: Context) {
 
     companion object {
+        private const val TAG = "VerificationService"
         private const val PREFS_NAME = "verification_codes"
         private const val KEY_CODE_PREFIX = "verify_"
         private const val KEY_TIMESTAMP_PREFIX = "timestamp_"
@@ -45,13 +38,6 @@ class VerificationService(private val context: Context) {
         private const val ALIYUN_SIGN_NAME = "极流桌面"
         private const val ALIYUN_TEMPLATE_CODE = "SMS_XXXXXXXXX"
         private const val ALIYUN_SMS_ENDPOINT = "dysmsapi.aliyuncs.com"
-        
-        // SMTP配置（需从SECRET.md获取）
-        private const val SMTP_HOST = "smtp.gmail.com"
-        private const val SMTP_PORT = "587"
-        private const val SMTP_USERNAME = "your_email@gmail.com"
-        private const val SMTP_PASSWORD = "your_app_password"
-        private const val SMTP_FROM_NAME = "极流桌面"
     }
 
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -97,6 +83,7 @@ class VerificationService(private val context: Context) {
 
     /**
      * 发送邮箱验证码
+     * 注意：实际邮件发送需要配置后端服务器，此处使用模拟方式
      * @param email 邮箱地址
      * @return Result<Unit>
      */
@@ -116,18 +103,15 @@ class VerificationService(private val context: Context) {
             // 生成验证码
             val code = generateCode()
             
-            // 发送邮件
-            val sendResult = sendEmail(email, code)
+            // 模拟发送邮件（实际需要后端服务）
+            preferencesManager.lastVerificationCode = code
+            Log.d(TAG, "邮箱验证码已保存: $code (实际发送需后端支持)")
             
-            if (sendResult) {
-                // 保存验证码
-                saveCode("email", email, code)
-                // 设置冷却时间
-                setCooldown("email", email)
-                Result.success(Unit)
-            } else {
-                Result.failure(Exception("发送失败，请稍后重试"))
-            }
+            // 保存验证码
+            saveCode("email", email, code)
+            // 设置冷却时间
+            setCooldown("email", email)
+            Result.success(Unit)
         } catch (e: Exception) {
             Result.failure(e)
         }
@@ -297,70 +281,6 @@ class VerificationService(private val context: Context) {
             
             // 暂时使用模拟方式
             preferencesManager.lastVerificationCode = code
-            true
-        } catch (e: Exception) {
-            e.printStackTrace()
-            false
-        }
-    }
-
-    /**
-     * 发送邮箱验证码
-     */
-    private fun sendEmail(email: String, code: String): Boolean {
-        return try {
-            // 判断是否配置了真实的SMTP服务器
-            if (SMTP_USERNAME == "your_email@gmail.com") {
-                // 使用模拟方式
-                preferencesManager.lastVerificationCode = code
-                return true
-            }
-
-            // 邮件内容
-            val subject = "【极流桌面】验证码"
-            val content = """
-                <html>
-                <body style="font-family: 'Microsoft YaHei', Arial, sans-serif;">
-                    <div style="max-width: 500px; margin: 0 auto; padding: 20px;">
-                        <h2 style="color: #FF6B35; margin-bottom: 20px;">极流桌面</h2>
-                        <div style="background: #fff3e0; border-radius: 10px; padding: 30px; text-align: center;">
-                            <p style="color: #333; font-size: 16px; margin-bottom: 20px;">您的验证码是：</p>
-                            <p style="color: #FF6B35; font-size: 36px; font-weight: bold; letter-spacing: 8px; margin: 0;">$code</p>
-                            <p style="color: #666; font-size: 12px; margin-top: 20px;">验证码有效期5分钟，请勿泄露给他人</p>
-                        </div>
-                    </div>
-                </body>
-                </html>
-            """.trimIndent()
-
-            // 配置邮件属性
-            val props = Properties().apply {
-                put("mail.smtp.host", SMTP_HOST)
-                put("mail.smtp.port", SMTP_PORT)
-                put("mail.smtp.auth", "true")
-                put("mail.smtp.starttls.enable", "true")
-            }
-
-            // 创建认证器
-            val authenticator = object : Authenticator() {
-                override fun getPasswordAuthentication(): PasswordAuthentication {
-                    return PasswordAuthentication(SMTP_USERNAME, SMTP_PASSWORD)
-                }
-            }
-
-            // 创建邮件会话
-            val session = Session.getInstance(props, authenticator)
-
-            // 创建邮件消息
-            val message = MimeMessage(session).apply {
-                setFrom(InternetAddress(SMTP_USERNAME, SMTP_FROM_NAME))
-                setRecipients(Message.RecipientType.TO, InternetAddress.parse(email))
-                setSubject(subject, "UTF-8")
-                setContent(content, "text/html; charset=UTF-8")
-            }
-
-            // 发送邮件
-            Transport.send(message)
             true
         } catch (e: Exception) {
             e.printStackTrace()

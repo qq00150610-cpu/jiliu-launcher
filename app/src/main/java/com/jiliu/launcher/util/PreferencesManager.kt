@@ -143,6 +143,11 @@ class PreferencesManager(private val context: Context) {
         prefs.edit().putInt(key, value).apply()
     }
 
+    // 最后使用的验证码（用于测试/模拟）
+    var lastVerificationCode: String?
+        get() = prefs.getString(KEY_LAST_VERIFICATION_CODE, null)
+        set(value) = prefs.edit().putString(KEY_LAST_VERIFICATION_CODE, value).apply()
+
     private object PreferencesKeys {
         val HOME_MODE = intPreferencesKey("home_mode")
     }
@@ -166,5 +171,6 @@ class PreferencesManager(private val context: Context) {
         private const val KEY_ACCESSIBILITY_ENABLED = "accessibility_enabled"
         private const val KEY_FIRST_LAUNCH = "first_launch"
         private const val KEY_BLUETOOTH_AUTO_PLAY = "bluetooth_auto_play"
+        private const val KEY_LAST_VERIFICATION_CODE = "last_verification_code"
     }
 }
