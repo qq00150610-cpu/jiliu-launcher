@@ -38,7 +38,11 @@
     <color name="transparent">#00000000</color>
     <color name="semi_transparent">#80000000</color>
 
-    <!-- 氢桌面特有的柔和阴影色 -->
+    <!-- 阴影色 -->
     <color name="shadow">#1A000000</color>
     <color name="divider">#E0E0E0</color>
+    
+    <!-- 通用颜色 -->
+    <color name="white">#FFFFFF</color>
+    <color name="card_border">#E0E0E0</color>
 </resources>

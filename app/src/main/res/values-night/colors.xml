@@ -42,4 +42,8 @@
     <!-- 阴影色 -->
     <color name="shadow">#33000000</color>
     <color name="divider">#3D3D5C</color>
+    
+    <!-- 通用颜色 -->
+    <color name="white">#FFFFFF</color>
+    <color name="card_border">#3D3D5C</color>
 </resources>
