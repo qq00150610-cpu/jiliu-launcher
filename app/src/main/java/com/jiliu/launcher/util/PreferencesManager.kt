@@ -105,6 +105,15 @@ class PreferencesManager(private val context: Context) {
         get() = prefs.getBoolean(KEY_BLUETOOTH_AUTO_PLAY, true)
         set(value) = prefs.edit().putBoolean(KEY_BLUETOOTH_AUTO_PLAY, value).apply()
 
+    // Generic get/set methods
+    fun getString(key: String, defaultValue: String = ""): String {
+        return prefs.getString(key, defaultValue) ?: defaultValue
+    }
+
+    fun setString(key: String, value: String) {
+        prefs.edit().putString(key, value).apply()
+    }
+
     // DataStore-based flow for reactive updates
     val homeModeFlow: Flow<Int> = context.dataStore.data.map { prefs ->
         prefs[PreferencesKeys.HOME_MODE] ?: 0
