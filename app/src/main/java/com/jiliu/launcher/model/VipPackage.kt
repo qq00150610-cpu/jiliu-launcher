@@ -76,12 +76,4 @@ data class ActivationCode(
     val userId: String? = null
 )
 
-/**
- * 激活码兑换结果
- */
-data class ActivationResult(
-    val success: Boolean,
-    val message: String,
-    val memberInfo: MemberInfo? = null,
-    val remainingDays: Int = 0
-)
+

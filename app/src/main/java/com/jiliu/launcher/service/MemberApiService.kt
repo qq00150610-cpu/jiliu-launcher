@@ -186,7 +186,7 @@ class MemberApiService(private val context: Context) {
         }
     }
     
-    private fun <T> parseResponse(response: Response): ApiResult<T> {
+    private inline fun <reified T> parseResponse(response: Response): ApiResult<T> {
         return try {
             val body = response.body?.string()
             if (body == null) {
