@@ -49,4 +49,7 @@
     <!-- Standard Colors -->
     <color name="white">#FFFFFF</color>
     <color name="black">#00000000</color>
+    
+    <!-- UI Colors -->
+    <color name="divider">#33333333</color>
 </resources>
