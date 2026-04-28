@@ -132,7 +132,8 @@ class VipPurchaseViewModel(application: Application) : AndroidViewModel(applicat
         
         viewModelScope.launch {
             // 获取用户ID
-            val userId = preferencesManager.memberId ?: "device_${System.currentTimeMillis()}"
+            val userId = preferencesManager.getString("member_id", null) 
+                ?: "device_${System.currentTimeMillis()}"
             
             val result = activationCodeService.redeemCode(code, userId)
             
