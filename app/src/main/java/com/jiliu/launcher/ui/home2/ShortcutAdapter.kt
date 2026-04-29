@@ -5,9 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jiliu.launcher.databinding.ItemShortcutBinding
 
+data class ShortcutItem(
+    val id: String,
+    val title: String,
+    val iconRes: String,
+    val packageName: String? = null,
+    val action: String? = null
+)
+
 class ShortcutAdapter(
-    private val shortcuts: List<Home2Fragment.ShortcutItem>,
-    private val onShortcutClick: (Home2Fragment.ShortcutItem) -> Unit
+    private val shortcuts: List<ShortcutItem>,
+    private val onShortcutClick: (ShortcutItem) -> Unit
 ) : RecyclerView.Adapter<ShortcutAdapter.ShortcutViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShortcutViewHolder {
@@ -29,19 +37,12 @@ class ShortcutAdapter(
         private val binding: ItemShortcutBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(shortcut: Home2Fragment.ShortcutItem) {
+        fun bind(shortcut: ShortcutItem) {
             binding.shortcutTitle.text = shortcut.title
-            // Set icon based on shortcut.iconRes
-            // binding.shortcutIcon.setImageResource(getIconResource(shortcut.iconRes))
             
             binding.root.setOnClickListener {
                 onShortcutClick(shortcut)
             }
-        }
-
-        private fun getIconResource(iconRes: String): Int {
-            // Map icon resource names to actual resources
-            return 0
         }
     }
 }
