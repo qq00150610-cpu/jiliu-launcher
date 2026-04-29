@@ -44,6 +44,30 @@ class MemberActivity : AppCompatActivity() {
             }
         }
 
+        // Trial button
+        binding.btnTrial.setOnClickListener {
+            viewModel.startTrial()
+        }
+
+        // Phone click - dial
+        binding.layoutPhone.setOnClickListener {
+            try {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = android.net.Uri.parse("tel:13325136914")
+                startActivity(intent)
+            } catch (e: Exception) {
+                Toast.makeText(this, "无法拨打电话", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // QQ click - copy to clipboard
+        binding.layoutQq.setOnClickListener {
+            val clipboard = getSystemService(CLIPBOARD_SERVICE) as android.content.ClipboardManager
+            val clip = android.content.ClipData.newPlainText("QQ", "251662887")
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(this, "QQ号已复制: 251662887", Toast.LENGTH_SHORT).show()
+        }
+
         // Settings button
         binding.btnSettings.setOnClickListener {
             startActivity(Intent(this, com.jiliu.launcher.ui.settings.SettingsActivity::class.java))

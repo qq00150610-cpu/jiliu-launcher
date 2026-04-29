@@ -76,6 +76,32 @@ class MemberViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
+    /**
+     * Start 15-day free trial
+     */
+    fun startTrial() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _activationResult.value = ActivationState.Loading
+            
+            try {
+                val result = memberRepository.startTrial()
+                
+                result.fold(
+                    onSuccess = { memberInfo ->
+                        _memberInfo.value = memberInfo
+                        _activationResult.value = ActivationState.Success(memberInfo)
+                    },
+                    onFailure = { error ->
+                        _activationResult.value = ActivationState.Error(error.message ?: "试用激活失败")
+                    }
+                )
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
     sealed class ActivationState {
         object Loading : ActivationState()
         data class Success(val memberInfo: MemberInfo) : ActivationState()

@@ -131,4 +131,38 @@ class MemberRepository(context: Context) {
             preferencesManager.activationCode = null
         }
     }
+
+    /**
+     * Start 15-day free trial
+     */
+    suspend fun startTrial(): Result<MemberInfo> = withContext(Dispatchers.IO) {
+        try {
+            // Check if already used trial
+            val trialUsed = preferencesManager.getBoolean("trial_used", false)
+            if (trialUsed) {
+                return@withContext Result.failure(Exception("您已使用过免费试用，每个设备仅限一次"))
+            }
+
+            // Activate 15-day trial
+            val calendar = Calendar.getInstance()
+            calendar.add(Calendar.DAY_OF_YEAR, 15)
+
+            preferencesManager.isVip = true
+            preferencesManager.vipExpireTime = calendar.timeInMillis
+            preferencesManager.setBoolean("trial_used", true)
+            preferencesManager.activationCode = "TRIAL-15DAYS"
+
+            Result.success(
+                MemberInfo(
+                    isVip = true,
+                    expireTime = calendar.timeInMillis,
+                    activationCode = "TRIAL-15DAYS",
+                    memberLevel = MemberLevel.VIP,
+                    features = getVipFeatures()
+                )
+            )
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 }
