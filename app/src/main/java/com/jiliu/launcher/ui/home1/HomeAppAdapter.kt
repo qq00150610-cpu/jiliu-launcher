@@ -6,6 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jiliu.launcher.databinding.ItemHomeAppBinding
 import com.jiliu.launcher.util.AppUtils
 
+/**
+ * 车载桌面应用图标适配器
+ * 应用图标使用白色圆角背景确保清晰可见
+ */
 class HomeAppAdapter(
     private val apps: List<AppUtils.AppInfo>,
     private val onAppClick: (AppUtils.AppInfo) -> Unit

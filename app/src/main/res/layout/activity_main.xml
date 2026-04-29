@@ -1,23 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 车载桌面主Activity - 支持壁纸透出 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@android:color/transparent"
+    android:fitsSystemWindows="false">
 
-    <!-- Home container -->
-    <FrameLayout
-        android:id="@+id/home_container"
+    <!-- 壁纸层（动态设置） -->
+    <ImageView
+        android:id="@+id/wallpaper_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="80dp" />
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
 
-    <!-- Dock container -->
-    <FrameLayout
-        android:id="@+id/dock_container"
+    <!-- 主内容层 -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_gravity="bottom" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- 顶部状态栏区域（沉浸式） -->
+        <FrameLayout
+            android:id="@+id/status_bar_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="24dp">
+
+            <!-- 顶部渐变遮罩（可选，保护状态栏图标可读性） -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_car_glass_gradient_top" />
+
+        </FrameLayout>
+
+        <!-- 桌面内容区 -->
+        <FrameLayout
+            android:id="@+id/home_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Dock栏占位（80dp） -->
+        <FrameLayout
+            android:id="@+id/dock_container"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_car_dock" />
+
+    </LinearLayout>
 
 </FrameLayout>

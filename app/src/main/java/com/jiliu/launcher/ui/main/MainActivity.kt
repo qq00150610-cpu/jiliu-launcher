@@ -4,13 +4,17 @@ import android.app.WallpaperManager
 import android.content.ComponentName
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -29,6 +33,7 @@ import com.jiliu.launcher.viewmodel.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +41,16 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
 
     private var currentHomeFragment: Fragment? = null
+
+    // 壁纸选择器
+    private val wallpaperPicker = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri ->
+        uri?.let { selectedUri ->
+            // 用户选择了壁纸
+            loadCustomWallpaper(selectedUri)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +94,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setWallpaperBackground() {
+        // 优先使用自定义壁纸
+        val customWallpaperPath = App.instance.preferencesManager.lastWallpaperPath
+        
+        if (!customWallpaperPath.isNullOrEmpty()) {
+            val wallpaperFile = File(customWallpaperPath)
+            if (wallpaperFile.exists()) {
+                try {
+                    val bitmap = BitmapFactory.decodeFile(wallpaperFile.absolutePath)
+                    if (bitmap != null) {
+                        binding.wallpaperImage.setImageBitmap(bitmap)
+                        binding.wallpaperImage.visibility = View.VISIBLE
+                        return
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+        
+        // 回退到系统壁纸
         try {
             val wallpaperManager = WallpaperManager.getInstance(this)
             val wallpaperDrawable = wallpaperManager.drawable
@@ -86,12 +121,66 @@ class MainActivity : AppCompatActivity() {
             if (wallpaperDrawable != null) {
                 binding.root.background = wallpaperDrawable
             } else {
-                binding.root.setBackgroundResource(R.color.background)
+                // 默认深色背景
+                binding.root.setBackgroundResource(R.color.background_dark)
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            binding.root.setBackgroundResource(R.color.background)
+            binding.root.setBackgroundResource(R.color.background_dark)
         }
+    }
+
+    /**
+     * 加载自定义壁纸
+     */
+    fun loadCustomWallpaper(uri: android.net.Uri) {
+        try {
+            // 保存壁纸路径
+            val inputStream = contentResolver.openInputStream(uri)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            inputStream?.close()
+            
+            if (bitmap != null) {
+                // 保存到应用私有目录
+                val wallpaperDir = File(filesDir, "wallpaper")
+                if (!wallpaperDir.exists()) {
+                    wallpaperDir.mkdirs()
+                }
+                
+                val wallpaperFile = File(wallpaperDir, "custom_wallpaper.jpg")
+                wallpaperFile.outputStream().use { out ->
+                    bitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 90, out)
+                }
+                
+                // 保存路径
+                App.instance.preferencesManager.lastWallpaperPath = wallpaperFile.absolutePath
+                
+                // 显示壁纸
+                binding.wallpaperImage.setImageBitmap(bitmap)
+                binding.wallpaperImage.visibility = View.VISIBLE
+                binding.root.background = null
+                
+                Toast.makeText(this, "壁纸设置成功", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "壁纸设置失败", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    /**
+     * 打开壁纸选择器
+     */
+    fun openWallpaperPicker() {
+        wallpaperPicker.launch("image/*")
+    }
+
+    /**
+     * 清除自定义壁纸，使用系统壁纸
+     */
+    fun clearCustomWallpaper() {
+        App.instance.preferencesManager.lastWallpaperPath = null
+        setWallpaperBackground()
     }
 
     private fun checkPermissions() {
@@ -200,19 +289,7 @@ class MainActivity : AppCompatActivity() {
                 startService(intent)
             }
         } else {
-            PermissionUtils.requestOverlayPermission(this)
+            Toast.makeText(this, "需要悬浮窗权限", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // Refresh home mode on resume
-        viewModel.setHomeMode(App.instance.preferencesManager.homeMode)
-    }
-
-    override fun onBackPressed() {
-        // Handle back press for launcher
-        // Could show exit dialog or minimize app
-        super.onBackPressed()
     }
 }

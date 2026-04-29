@@ -273,4 +273,16 @@ object IntentUtils {
             openSettingsPage(context, Settings.ACTION_LOCALE_SETTINGS)
         }
     }
+
+    /**
+     * Check if app is installed
+     */
+    fun isAppInstalled(context: Context, packageName: String): Boolean {
+        return try {
+            context.packageManager.getApplicationInfo(packageName, 0)
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
 }

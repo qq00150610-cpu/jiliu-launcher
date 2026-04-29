@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 车载桌面 - 毛玻璃覆盖层（用于状态栏/顶部区域） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- 向上渐变消失的深色遮罩 -->
+    <gradient
+        android:type="linear"
+        android:angle="270"
+        android:startColor="@color/glass_overlay"
+        android:endColor="@color/transparent" />
+</shape>

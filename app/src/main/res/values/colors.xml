@@ -1,50 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 氢桌面主色调 - 清新蓝绿色 -->
-    <color name="primary">#00C9A7</color>
-    <color name="primary_dark">#00A896</color>
-    <color name="primary_light">#7DDFC3</color>
+    <!-- ========== 车载桌面主色调 ========== -->
+    
+    <!-- 主色调 - 青蓝色（科技感） -->
+    <color name="primary">#00D4FF</color>
+    <color name="primary_dark">#00A8CC</color>
+    <color name="primary_light">#66E5FF</color>
+    
+    <!-- 强调色 - 橙色（活力） -->
+    <color name="accent">#FF9500</color>
+    <color name="accent_dark">#E68600</color>
+    <color name="accent_light">#FFB340</color>
 
-    <!-- 强调色 - 柔和橙色 -->
-    <color name="accent">#FF8066</color>
-    <color name="accent_dark">#E66855</color>
-    <color name="accent_light">#FFB399</color>
+    <!-- ========== 背景色（支持壁纸透出） ========== -->
+    <!-- 透明背景让壁纸透出 -->
+    <color name="background">@android:color/transparent</color>
+    <color name="background_dark">#1A1A1A</color>
+    
+    <!-- 卡片/表面颜色 - 半透明黑色（毛玻璃效果） -->
+    <color name="surface">#80000000</color>
+    <color name="surface_light">#CC1A1A1A</color>
+    <color name="card_background">#99000000</color>
+    <color name="card_background_light">#B3191919</color>
+    
+    <!-- 毛玻璃覆盖层 -->
+    <color name="glass_overlay">#661A1A1A</color>
+    <color name="glass_highlight">#0DFFFFFF</color>
 
-    <!-- 背景色 - 氢桌面特色浅色背景 -->
-    <color name="background">#F5F7FA</color>
-    <color name="background_dark">#E8ECF0</color>
-    <color name="surface">#FFFFFF</color>
-    <color name="card_background">#FFFFFF</color>
+    <!-- ========== 文字颜色 ========== -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="text_hint">#66FFFFFF</color>
+    <color name="text_accent">#00D4FF</color>
 
-    <!-- 文字颜色 -->
-    <color name="text_primary">#2D3436</color>
-    <color name="text_secondary">#636E72</color>
-    <color name="text_hint">#B2BEC3</color>
+    <!-- ========== 状态颜色 ========== -->
+    <color name="success">#00E676</color>
+    <color name="warning">#FFCA28</color>
+    <color name="error">#FF5252</color>
 
-    <!-- 状态颜色 -->
-    <color name="success">#00B894</color>
-    <color name="warning">#FDCB6E</color>
-    <color name="error">#FF7675</color>
+    <!-- ========== VIP颜色 ========== -->
+    <color name="vip_gold">#FFD700</color>
+    <color name="vip_background">#33FFD700</color>
 
-    <!-- VIP颜色 -->
-    <color name="vip_gold">#F9CA24</color>
-    <color name="vip_background">#FFF8E7</color>
+    <!-- ========== 渐变颜色 ========== -->
+    <color name="gradient_start">#CC1A1A1A</color>
+    <color name="gradient_end">#001A1A1A</color>
 
-    <!-- 渐变颜色 -->
-    <color name="gradient_start">#FFFFFF</color>
-    <color name="gradient_end">#F5F7FA</color>
-
-    <!-- 透明色 -->
+    <!-- ========== 透明色 ========== -->
     <color name="transparent">#00000000</color>
     <color name="semi_transparent">#80000000</color>
+    <color name="overlay_dark">#B3000000</color>
 
-    <!-- 阴影色 -->
-    <color name="shadow">#1A000000</color>
-    <color name="divider">#E0E0E0</color>
+    <!-- ========== 阴影与分割线 ========== -->
+    <color name="shadow">#40000000</color>
+    <color name="divider">#33FFFFFF</color>
     
-    <!-- 通用颜色 -->
+    <!-- ========== 通用颜色 ========== -->
     <color name="white">#FFFFFF</color>
-    <color name="card_border">#E0E0E0</color>
-    <color name="vip_card_selected">#FFF3E0</color>
+    <color name="black">#000000</color>
+    <color name="card_border">#33FFFFFF</color>
+    <color name="vip_card_selected">#33FFD700</color>
+    
+    <!-- ========== 状态栏/导航栏 ========== -->
+    <color name="status_bar">#00000000</color>
+    <color name="navigation_bar">#00000000</color>
+    
+    <!-- ========== 音乐播放器颜色 ========== -->
+    <color name="music_progress">#00D4FF</color>
+    <color name="music_progress_bg">#33FFFFFF</color>
+    
+    <!-- ========== Dock栏颜色 ========== -->
+    <color name="dock_background">#CC1A1A1A</color>
+    <color name="dock_item_bg">#26FFFFFF</color>
+    
+    <!-- ========== 图标按钮 ========== -->
+    <color name="icon_bg">#33FFFFFF</color>
+    <color name="icon_tint">#FFFFFF</color>
 </resources>
-<!-- v1.8.0 rebuild trigger -->

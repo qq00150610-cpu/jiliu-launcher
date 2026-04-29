@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 车载桌面 - 半透明毛玻璃大卡片（用于地图/媒体弹窗） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- 半透明深色背景 -->
+    <solid android:color="@color/surface_light" />
+    
+    <!-- 超大圆角 -->
+    <corners android:radius="24dp" />
+    
+    <!-- 边框 -->
+    <stroke 
+        android:width="0.5dp" 
+        android:color="@color/card_border" />
+</shape>

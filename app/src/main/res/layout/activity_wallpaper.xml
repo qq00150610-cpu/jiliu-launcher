@@ -1,101 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 车载桌面壁纸选择器 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background_dark">
 
-    <!-- Featured wallpapers -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/featured_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="16dp" />
-
-    <!-- Close button -->
-    <ImageButton
-        android:id="@+id/btn_close"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="top|end"
-        android:layout_margin="8dp"
-        android:background="@drawable/bg_circle_button"
-        android:src="@drawable/ic_close"
-        android:contentDescription="关闭" />
-
-    <!-- Back button -->
-    <ImageButton
-        android:id="@+id/btn_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="top|start"
-        android:layout_margin="8dp"
-        android:background="@drawable/bg_circle_button"
-        android:src="@drawable/ic_back"
-        android:contentDescription="返回"
-        android:visibility="gone" />
-
-    <!-- Category container -->
+    <!-- 主内容 -->
     <LinearLayout
-        android:id="@+id/category_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="220dp"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
+        <!-- 顶部区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="壁纸"
+                android:textColor="@color/text_primary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- 关闭按钮 -->
+            <ImageButton
+                android:id="@+id/btn_close"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_car_circle_button"
+                android:src="@drawable/ic_close"
+                android:padding="10dp"
+                app:tint="@color/white"
+                android:contentDescription="关闭" />
+
+        </LinearLayout>
+
+        <!-- Featured wallpapers -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/featured_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp" />
+
+        <!-- 本地壁纸按钮 -->
+        <Button
+            android:id="@+id/btn_local_wallpaper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="壁纸分类"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="从相册选择"
+            android:backgroundTint="@color/primary"
+            android:textColor="@color/white" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/category_recycler"
+        <!-- Category container -->
+        <LinearLayout
+            android:id="@+id/category_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="壁纸分类"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp" />
+
+        </LinearLayout>
+
+        <!-- Wallpaper container -->
+        <LinearLayout
+            android:id="@+id/wallpaper_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone">
+
+            <!-- Back button -->
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_car_circle_button"
+                android:src="@drawable/ic_back"
+                android:padding="10dp"
+                app:tint="@color/white"
+                android:contentDescription="返回" />
+
+            <TextView
+                android:id="@+id/tv_category_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="壁纸"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/wallpaper_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <!-- Wallpaper container -->
-    <LinearLayout
-        android:id="@+id/wallpaper_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="220dp"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/tv_category_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="壁纸"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/wallpaper_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp" />
-
-    </LinearLayout>
-
-    <!-- Wallpaper options -->
+    <!-- Wallpaper options (Bottom sheet style) -->
     <LinearLayout
         android:id="@+id/wallpaper_options"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/surface"
+        android:background="@drawable/bg_car_glass_large"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="20dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="24dp"
         android:visibility="gone">
 
         <TextView
@@ -103,12 +147,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text_primary"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="设置此壁纸到"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
             <Button
@@ -116,7 +169,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="主屏幕" />
+                android:text="桌面"
+                android:backgroundTint="@color/surface"
+                android:textColor="@color/text_primary" />
 
             <Button
                 android:id="@+id/btn_set_lock"
@@ -124,7 +179,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:text="锁屏" />
+                android:text="锁屏"
+                android:backgroundTint="@color/surface"
+                android:textColor="@color/text_primary" />
 
             <Button
                 android:id="@+id/btn_apply"
@@ -132,19 +189,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:text="全部" />
+                android:text="全部"
+                android:backgroundTint="@color/primary"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_local_wallpaper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:text="本地壁纸" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
