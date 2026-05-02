@@ -104,6 +104,7 @@ class ActivationCodePurchaseActivity : AppCompatActivity() {
                 • 月卡：JLMxxxxxxxxxxxx（16位）
                 • 季卡：JLSxxxxxxxxxxxx（16位）
                 • 年卡：JLYxxxxxxxxxxxx（16位）
+                • 永久卡：JLPxxxxxxxxxxxx（16位）
                 
                 使用说明：
                 1. 请确保输入正确的激活码
@@ -116,6 +117,7 @@ class ActivationCodePurchaseActivity : AppCompatActivity() {
                 • 月卡测试码：JLM123456789ABCD
                 • 季卡测试码：JLS123456789ABCD
                 • 年卡测试码：JLY123456789ABCD
+                • 永久卡测试码：JLP123456789ABCD
             """.trimIndent())
             .setPositiveButton("知道了", null)
             .show()
@@ -135,6 +137,9 @@ class ActivationCodePurchaseActivity : AppCompatActivity() {
                   
                 • 年卡：JLY123456789ABCD
                   → 开通365天VIP
+                  
+                • 永久卡：JLP123456789ABCD
+                  → 开通永久VIP
                   
                 点击下方按钮复制测试码：
             """.trimIndent())

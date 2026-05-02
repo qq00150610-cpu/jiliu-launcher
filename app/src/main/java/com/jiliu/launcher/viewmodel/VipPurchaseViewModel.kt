@@ -55,8 +55,8 @@ class VipPurchaseViewModel(application: Application) : AndroidViewModel(applicat
                 name = "月卡",
                 description = "30天VIP会员",
                 duration = 30,
-                originalPrice = 49.90,
-                currentPrice = 29.90,
+                originalPrice = 12.90,
+                currentPrice = 6.90,
                 discount = "限时优惠",
                 features = listOf("VIP壁纸", "高级主题", "语音服务")
             ),
@@ -65,9 +65,9 @@ class VipPurchaseViewModel(application: Application) : AndroidViewModel(applicat
                 name = "季卡",
                 description = "90天VIP会员",
                 duration = 90,
-                originalPrice = 99.90,
-                currentPrice = 69.90,
-                discount = "限时6折",
+                originalPrice = 29.90,
+                currentPrice = 16.90,
+                discount = "超值推荐",
                 features = listOf("VIP壁纸", "高级主题", "语音服务")
             ),
             VipPackage(
@@ -75,10 +75,20 @@ class VipPurchaseViewModel(application: Application) : AndroidViewModel(applicat
                 name = "年卡",
                 description = "365天VIP会员",
                 duration = 365,
-                originalPrice = 299.90,
-                currentPrice = 199.90,
-                discount = "超值推荐",
+                originalPrice = 99.90,
+                currentPrice = 72.90,
+                discount = "最受欢迎",
                 features = listOf("VIP壁纸", "高级主题", "语音服务", "优先客服")
+            ),
+            VipPackage(
+                id = "permanent",
+                name = "永久卡",
+                description = "永久VIP会员",
+                duration = 36500,
+                originalPrice = 299.90,
+                currentPrice = 188.00,
+                discount = "一次购买永久享用",
+                features = listOf("VIP壁纸", "高级主题", "语音服务", "优先客服", "所有未来功能")
             )
         )
     }
